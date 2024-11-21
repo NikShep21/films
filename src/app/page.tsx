@@ -1,3 +1,12 @@
+import MainPoster from '@/components/screens/mainPoster/MainPoster'
+import styles from './page.module.scss'
 export default function Home() {
-  return <div></div>;
+  return (
+    <main>
+      
+      <MainPoster></MainPoster>
+      
+    </main>
+  )
+  
 }

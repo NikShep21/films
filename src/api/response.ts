@@ -1,19 +1,17 @@
 import axios from "axios";
-
-class Responses{
-    private api_key:string
-    constructor(){
-        this.api_key = process.env.NEXT_PUBLIC_API_KEY || ""
-    }
-    getId(id:number){
-        try{
-            const unswer = axios.get(`https://api.themoviedb.org /3/find/${id}?api_key=${this.api_key}`) 
-            return unswer
-        }catch(error){
-            console.error('Error fetching data:', error);
-            throw error;
-        }
+const defaultPath = 'https://api.themoviedb.org/3'
+const imagePath = 'https://image.tmdb.org/t/p'
+const api_key = process.env.NEXT_PUBLIC_API_KEY
+export async function getMovieMassive (typeReqest:string){
+    try{
         
-       
+        const response = await axios.get(`${defaultPath}/movie/${typeReqest}?api_key=${api_key}`) 
+        
+        return response.data.results
+        
+    }catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
     }
-}
+    
+}               
