@@ -1,18 +1,14 @@
-'use client'
+"use client";
 import CustomLink from "@/components/ui/customLink/CustomLink";
 import styles from "./MainPoster.module.scss";
 import { getMovieMassive } from "@/api/response";
 import useResponse from "@/hooks/useResponse";
-import Slider from "@/components/mainSlider/MainSlider";
+import MainSlider from "@/components/mainSlider/MainSlider";
 
 const MainPoster = () => {
-  
-  
   return (
-    
     <section className={styles.mainPoster}>
-    <Slider></Slider>
-     
+      <MainSlider typeFilms="popular"></MainSlider>
     </section>
   );
 };

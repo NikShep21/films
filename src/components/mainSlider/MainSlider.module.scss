@@ -1,0 +1,27 @@
+.slider{
+    position: relative;
+    width: 900px;
+    height: 500px;
+    margin: 0 auto;
+    .sliderLine{
+        position: absolute;
+        display: flex;
+        gap: 40px;
+        left: -940px;
+    }
+    .arrowLeft{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        left: -140px;
+    }
+    .arrowRight{
+        
+        position: absolute;
+        top: 50%;
+        right: -140px;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+}
