@@ -5,7 +5,7 @@ interface Card{
 const imagePath = 'https://image.tmdb.org/t/p'
 
 const bigCard = ({card}:Card) => {
-  console.log(card)
+ 
   
   return (
     <div className={styles.card}>
