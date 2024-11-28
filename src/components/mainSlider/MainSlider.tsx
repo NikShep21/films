@@ -11,46 +11,53 @@ interface SliderType{
 }
 
 const Slider = ({typeFilms}:SliderType) => {
+  
+  const [activeElem, setActiveElem] = useState<number>(2)
     const [isLoad, errors, data] = useResponse(getMovieMassive, typeFilms);
-    const [sliderData, setSliderData] = useState([])
-    console.log(sliderData)
-    const [countActiveSlider, setCountActiveSlider] = useState(2)
-    const [offset, setOffset] = useState<number>(-1880)
-    function prepareCount(count:number){
-      if (count > 20){
-        return count - 20
-      }
-      if (count < 0){
-        return count + 20
-      }
-      else{
-        return count
-      }
-    }
-    function moveLeft(){
-      setOffset(offset+940)
-      setCountActiveSlider(countActiveSlider-1)
-      setSliderData(sliderData.slice(0,-1))
-      setSliderData([data[prepareCount(countActiveSlider-3)], ...sliderData])
-    }
-    function moveRight(){
-      setOffset(offset-940)
-      setCountActiveSlider(countActiveSlider+1)
-      setSliderData(sliderData.slice(1))
-      setSliderData([...sliderData, data[prepareCount(countActiveSlider+3)]])
-    }
+    const [isAnimation, setIsAnimation] = useState<boolean>(true)
+    const [sliderElem, setSliderElem] = useState(Array(20).fill(undefined))
+    const [flagAnimation, setFlagAnimation] = useState<boolean>(false)
+    const offset = activeElem * -940;
     useEffect(()=>{
       if (!isLoad){
-        setSliderData(data.slice(0,5))
+        const newSliderElem = [...data]
+        newSliderElem.unshift(...data.slice(-3))
+        setSliderElem(newSliderElem)
       }
     },[isLoad])
-    console.log(sliderData)
+    function moveLeft(){
+      setActiveElem(activeElem-1)
+      setIsAnimation(true)
+    }
+    function moveRight(){
+      setActiveElem(activeElem+1)
+      setIsAnimation(true)
+    }
+    
+    useEffect(() => {
+
+      if (activeElem === 1 || activeElem === 22) {
+        
+          setTimeout(() => {
+            setIsAnimation(false); 
+            const newElem = activeElem === 1 ? 21 : 2;
+            
+            
+            setActiveElem(newElem);
+            
+          }, 300); 
+      }
+  }, [activeElem]);
+  
   return (
+    
+    
+    
     <div className={styles.slider}>
       <ButtonSlider onClick={moveLeft} size='70px' className={styles.arrowLeft}  type='left'/>
-      <div style = {{left: offset}} className={styles.sliderLine}>
+      <div style = {{left: offset,  transition: isAnimation ? 'all 0.3s' : undefined }} className={styles.sliderLine}>
         {
-          sliderData.map((elem)=>{
+          sliderElem.map((elem)=>{
             return(
               <BigCard  card={elem}></BigCard>
             )
@@ -59,6 +66,7 @@ const Slider = ({typeFilms}:SliderType) => {
       </div>
       <ButtonSlider onClick={moveRight} size='70px' className={styles.arrowRight} type='right'/>
     </div>
+    
   )
 }
 
