@@ -59,8 +59,7 @@ const Slider = ({typeFilms, speedAnimation = 300}:SliderType) => {
       if ((activeElem === 1 || activeElem === 24) && flagAnimation === false) {
     
         setIsAnimation(false); 
-        const newElem = activeElem === 1 ? 21 : 4;
-        setActiveElem(newElem);
+        setActiveElem(activeElem === 1 ? 21 : 4);
 
       }
   }, [flagAnimation]);

@@ -8,8 +8,18 @@
         position: absolute;
         height: 100%;
         width: 60%;
-        background: linear-gradient(90deg, rgba(3,13,22,0.8) 0%, rgba(3,13,22,0.5) 80%, rgba(3,13,22,0) 100%);
+        display: flex;
         
+        align-items: center;
+        background: linear-gradient(90deg, rgba(3,13,22,0.8) 0%, rgba(3,13,22,0.5) 80%, rgba(3,13,22,0) 100%);
+        .content{
+            margin-left: 30px;
+            
+            .name{
+                font-size: 62px;
+                
+            }
+        }
     }
     .img{
         max-width: 900px;
@@ -17,3 +27,9 @@
        
     }
 }   
+.voidCard{
+    max-width: 900px;
+    height: 100%;
+    border-radius: 20px;
+    background-color: black;
+}
