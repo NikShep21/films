@@ -25,24 +25,25 @@ const Slider = ({typeFilms, speedAnimation = 300}:SliderType) => {
       if (!isLoad){
         const newSliderElem = [...data]
         newSliderElem.unshift(...data.slice(-3))
+        newSliderElem.push(...data.slice(0,3))
         setSliderElem(newSliderElem)
       }
     },[isLoad])
-    function swapFlag(){
-      setFlagAnimation(true)
-      setTimeout(()=>{
-        setFlagAnimation(false)
-      },300)
-    }
+    useEffect(()=>{
+      const slider = document.querySelector(`.${styles.sliderLine}`)
+      slider?.addEventListener('transitionend',()=>setFlagAnimation(false))
+      return ()=> slider?.removeEventListener('transitionend',()=>setFlagAnimation(false))
+    },[])
+    
     function moveLeft(){
       if (flagAnimation){
         return 
       }
       setActiveElem(activeElem-1)
       setIsAnimation(true)
-      swapFlag()
-      
+      setFlagAnimation(true)
     }
+
     function moveRight(){
       if (flagAnimation){
         return 
@@ -50,33 +51,29 @@ const Slider = ({typeFilms, speedAnimation = 300}:SliderType) => {
       setActiveElem(activeElem+1)
       setIsAnimation(true)
       setFlagAnimation(true)
-      swapFlag()
+      
     }
     
     useEffect(() => {
 
-      if (activeElem === 1 || activeElem === 22) {
-        
-          setTimeout(() => {
-            setIsAnimation(false); 
-            const newElem = activeElem === 1 ? 21 : 2;
-            
-            
-            setActiveElem(newElem);
-            
-          }, speedAnimation); 
+      if ((activeElem === 1 || activeElem === 24) && flagAnimation === false) {
+    
+        setIsAnimation(false); 
+        const newElem = activeElem === 1 ? 21 : 4;
+        setActiveElem(newElem);
+
       }
-  }, [activeElem]);
+  }, [flagAnimation]);
   
   return (
     
     
     
     <div className={styles.slider}>
-      <div className={styles.buttonSliderLeftContainer}>
+      
 
         <ButtonSlider onClick={moveLeft} size='70px' className={styles.arrowLeft}  type='left'/>
-      </div>
+      
       <div style = {{left: offset,  transition: isAnimation ? `all ${speedAnimation}ms` : undefined }} className={styles.sliderLine}>
         {
           sliderElem.map((elem, id)=>{
@@ -86,9 +83,9 @@ const Slider = ({typeFilms, speedAnimation = 300}:SliderType) => {
           })
         }
       </div>
-      <div className={styles.buttonSliderRightContainer}>
+      
         <ButtonSlider onClick={moveRight} size='70px' className={styles.arrowRight} type='right'/>
-      </div>
+      
     </div>
     
   )

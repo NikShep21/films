@@ -3,6 +3,7 @@
     cursor: pointer;
     background-color:white;
     border-radius: 100%;
+    z-index: 100000;
     &:hover{
         opacity: 0.6;
     }
