@@ -1,10 +1,11 @@
 'use client'
+import { MassiveMovie } from '@/api/types'
 import React, { useEffect, useState } from 'react'
 
-const useResponse = (functionTypeResponse:Function, ...enothe:any) => {
+function useResponse<T>(functionTypeResponse:(...args:any)=>Promise<T>, ...enothe:any):[boolean,Error | null, T | null] {
     const [isLoad, setIsLoad] = useState<boolean>(true)
     const [errors, setErrors] = useState<Error | null>(null)
-    const [data, setData] = useState()
+    const [data, setData] = useState<T | null>(null)
     useEffect(()=>{
         async function resp() {
             try{
@@ -12,15 +13,20 @@ const useResponse = (functionTypeResponse:Function, ...enothe:any) => {
                 setData(response)
                 setIsLoad(false)
             }
-            catch(e){
-                setErrors(e)
-                throw e
+            catch (e) {
+                if (e instanceof Error) {
+                    setErrors(e); 
+                } else {
+                    setErrors(new Error('Unknown error occurred')); 
+                }
+                throw e; 
             }
             
         }
         resp()
         
     },[])
+    
   return [isLoad, errors, data]
 }
 

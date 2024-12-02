@@ -6,9 +6,9 @@ interface CustomLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 }
 
-const CustomLink = ({ children, href, ...props }:CustomLinkProps) => {
+const CustomLink = ({ className,children, href, ...props }:CustomLinkProps) => {
   return (
-    <Link href={href} className={styles.link} {...props}>
+    <Link href={href} className={`${styles.link} ${className}`} {...props}>
       {children}
     </Link>
   );

@@ -1,7 +1,11 @@
 .link{
+    transition: all 0.2s;
     padding: 9px 15px;
     color: white;
     border-radius: 15px;
     background-color:#DF003D ;
+    &:hover{
+        opacity: 0.6;
+    }
     
 }

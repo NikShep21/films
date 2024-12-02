@@ -2,6 +2,7 @@
     
     cursor: pointer;
     background-color:white;
+    transition: all 0.2s;
     border-radius: 100%;
     z-index: 100000;
     &:hover{
