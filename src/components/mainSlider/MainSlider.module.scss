@@ -1,27 +1,30 @@
 .sliderContainer{
-    padding: 0px 40px;
+    padding: 0px 10%;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 .slider{
     position: relative;
     max-width: 900px;
-    
     aspect-ratio: 9/5;
     
-    margin: 0 auto;
+    
+    
     
     .sliderLine{
-        position: absolute;
+        position: relative;
         display: flex;
         gap: 40px;
         height: 100%;
-        
+        width: max-content;
     }
     
     .arrowLeft{
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        
+        width: 2%;
+        height: 2%;
         left: -12%;
     }
     .arrowRight{
@@ -32,4 +35,5 @@
         transform: translateY(-50%);
         
     }
+    
 }

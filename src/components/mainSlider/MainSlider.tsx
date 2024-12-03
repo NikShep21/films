@@ -81,22 +81,28 @@ const Slider = ({typeFilms, speedAnimation = 400}:SliderType) => {
     <div className={styles.sliderContainer}>
 
     
-    <div className={styles.slider}> 
+    <div className={styles.slider} style={widthCard<700 ? {aspectRatio:487/731}:{aspectRatio:9/5}}> 
       
-    
+      {
+        widthCard < 700 ?
+        null
+        :
+        <>
         <ButtonSlider onClick={moveLeft} size='70px' className={styles.arrowLeft}  type='left'/>
-      
-      <div style = {{left: offset,  transition: isAnimation ? `left ${speedAnimation}ms` : undefined }} className={styles.sliderLine}>
+        <ButtonSlider onClick={moveRight} size='70px' className={styles.arrowRight} type='right'/>
+        </>
+      }
+      <div style = {{ transform: `translateX(${offset}px)`,   transition: isAnimation ? `transform ${speedAnimation}ms` : undefined }} className={styles.sliderLine}>
         {
           sliderElem.map((elem, id)=>{
             return(
-              <BigCard swipeCard={swipeWidthCard} key={id} isVisibleLink={id===activeElem ? true:false}  card={elem}></BigCard>
+              <BigCard typeImage={widthCard < 700 ? 'poster_path':'backdrop_path'} swipeCard={swipeWidthCard} key={id} isVisibleLink={id===activeElem ? true:false}  card={elem}></BigCard>
             )
           })
         }
       </div>
       
-        <ButtonSlider onClick={moveRight} size='70px' className={styles.arrowRight} type='right'/>
+        
       
     </div>
     </div>

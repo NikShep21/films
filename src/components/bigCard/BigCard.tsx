@@ -6,11 +6,12 @@ import { useEffect, useRef, useState } from "react";
 interface Card {
   card: any;
   isVisibleLink?: boolean;
-  swipeCard:(swipe:number)=>void
+  swipeCard:(swipe:number)=>void;
+  typeImage: 'poster_path'|'backdrop_path';
 } 
 const imagePath = "https://image.tmdb.org/t/p";
 
-const bigCard = ({ swipeCard,card, isVisibleLink = true }: Card) => {
+const bigCard = ({ swipeCard,card, typeImage, isVisibleLink = true }: Card) => {
   
   const cardRef = useRef<HTMLElement | null>(null) 
   
@@ -29,7 +30,7 @@ const bigCard = ({ swipeCard,card, isVisibleLink = true }: Card) => {
     return <div className={styles.voidCard}></div>;
   }
   return (
-    <div className={styles.card} ref={cardRef}>
+    <div style={typeImage==='backdrop_path'? {aspectRatio:9/5}:{aspectRatio:487/731}} className={styles.card} ref={cardRef}>
       {
         isVisibleLink ?
         null
@@ -52,7 +53,7 @@ const bigCard = ({ swipeCard,card, isVisibleLink = true }: Card) => {
       </div>
       <img
         className={styles.img}
-        src={`${imagePath}/w1280/${card ? card.backdrop_path : null}`}
+        src={`${imagePath}/w1280/${card ? card[typeImage] : null}`}
         alt=""
       />
     </div>

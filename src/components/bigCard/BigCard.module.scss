@@ -1,11 +1,9 @@
 .card{
     position: relative;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 9/5;
     border-radius: 20px;
     overflow: hidden;
-    
+    height: auto;
+   
     .unVisibleShadow{
         z-index: 1;
         background-color: black;
@@ -42,6 +40,8 @@
         }
     }
     .img{
+        width: 100%;
+        height: auto;
         max-width: 900px;
         
        
