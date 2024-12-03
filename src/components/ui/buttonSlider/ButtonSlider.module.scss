@@ -5,6 +5,9 @@
     transition: all 0.2s;
     border-radius: 100%;
     z-index: 100000;
+    
+    border: none;
+    
     &:hover{
         opacity: 0.6;
     }
