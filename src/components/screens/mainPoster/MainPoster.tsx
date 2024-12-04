@@ -8,7 +8,7 @@ import MainSlider from "@/components/mainSlider/MainSlider";
 const MainPoster = () => {
   return (
     <section className={styles.mainPoster}>
-      <MainSlider typeFilms="popular"></MainSlider>
+      <MainSlider typeFilms="top_rated"></MainSlider>
     </section>
   );
 };

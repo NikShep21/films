@@ -43,7 +43,7 @@ const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
     ) as HTMLElement | null;
     function turnOff(event: TransitionEvent) {
       if (event.target == slider) {
-        console.log('прок')
+        
         setFlagAnimation(false);
       }
     }
@@ -95,23 +95,22 @@ const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
   if(moveX >60){
     
     moveLeft()
+    setIsSwiping(false); 
   }
   else if(moveX < -60){
     moveRight();
-    
+    setIsSwiping(false); 
   }
   
  }
- const handleTouchEnd = () => {
-  setIsSwiping(false); 
-};
+ 
 
   return (
     <div
       className={styles.slider}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      
       style={
         widthCard < 450 ? { aspectRatio: 487 / 731, } : { aspectRatio: 9 / 5 }
       }

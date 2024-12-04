@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.scss";
 import Header from "@/components/screens/Header/Header";
+import HeaderBottom from "@/components/screens/HeaderBottom/HeaderBottom";
 
 
 
@@ -20,8 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       <body>
-        <Header></Header>
+       <Header/>
         {children}
+        <HeaderBottom/>
       </body>
     </html>
   );

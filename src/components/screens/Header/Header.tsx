@@ -23,7 +23,7 @@ const Header = () => {
               <Link href="/news">NEWS</Link>
             </li>
             <li>
-              <Link href="/NewsLetter">NEWSLETTER</Link>
+              <Link href="/Search">SEARCH</Link>
             </li>
           </ul>
         </nav>

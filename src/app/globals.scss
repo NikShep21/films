@@ -4,11 +4,14 @@
     box-sizing: border-box;
     color: white;
 }
-
+html,body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
 body{
     background-color: #030D16;
     color: white;
-    overflow: hidden;
+    
     
     
     

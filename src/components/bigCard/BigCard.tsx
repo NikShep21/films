@@ -13,7 +13,7 @@ const imagePath = "https://image.tmdb.org/t/p";
 
 const bigCard = ({ swipeCard,card, typeImage, isVisibleLink = true }: Card) => {
   
-  const cardRef = useRef<HTMLElement | null>(null) 
+  const cardRef = useRef<HTMLDivElement | null>(null) 
   
   useEffect(()=>{
     if(cardRef.current){
@@ -38,7 +38,7 @@ const bigCard = ({ swipeCard,card, typeImage, isVisibleLink = true }: Card) => {
         <div className={styles.unVisibleShadow}></div>
       }
       
-      <div className={styles.contentContainer}>
+      <div className={typeImage ==='backdrop_path' ? styles.contentContainer:styles.contentContainerMobile}>
         <div className={styles.content}>
           <div className={styles.name}>{card.title}</div>
 
