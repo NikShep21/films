@@ -5,6 +5,7 @@ import Header from "@/components/screens/Header/Header";
 import HeaderBottom from "@/components/screens/HeaderBottom/HeaderBottom";
 import { Provider } from "react-redux";
 import store from '@/store/index'
+import LayoutClient from "@/components/layouts/LayoutClient";
 export const metadata: Metadata = {
   title: "movies",
   description: "watch only interesting movies",
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Provider store={store}>
+    
       <html lang="en">
         <meta
           name="viewport"
@@ -24,10 +25,12 @@ export default function RootLayout({
         ></meta>
         <body>
           <Header />
-          {children}
+          <LayoutClient>
+            {children}
+          </LayoutClient>
           <HeaderBottom />
         </body>
       </html>
-    </Provider>
+    
   );
 }

@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Genres } from "@/api/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState:GenreState = {
     genres:[],
@@ -6,7 +7,7 @@ const initialState:GenreState = {
     isError:null
 }
 interface GenreState {
-    genres: any;
+    genres: Genres[];
     isLoading: boolean;
     isError: string | null;
 }
@@ -15,16 +16,13 @@ const genreSlice = createSlice({
     name: 'genres',
     initialState,
     reducers:{
-        setGenres(state,action){
-            state.genres = action.payload
-        },
-        setLoading(state,action){
-            state.isLoading = action.payload
-        },
-        setError(state,action){
-            state.isError = action.payload
-        }
+        
+        setState(state, action: PayloadAction<GenreState>) {
+            state.genres = action.payload.genres;
+            state.isLoading = action.payload.isLoading;
+            state.isError = action.payload.isError;
+          },
     }
 })
-export const {setGenres,setLoading,setError} = genreSlice.actions
+export const {setState} = genreSlice.actions
 export default genreSlice.reducer

@@ -14,3 +14,7 @@ export interface MassiveMovie{
     vote_average:number,
     vote_count:number
 }
+export interface Genres{
+    id:number,
+    name:string
+}
