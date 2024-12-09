@@ -4,11 +4,24 @@ import styles from "./MainPoster.module.scss";
 import { getMovieMassive } from "@/api/response";
 import useResponse from "@/hooks/useResponse";
 import MainSlider from "@/components/mainSlider/MainSlider";
+import { MassiveMovie } from "@/api/types";
 
+const aspect = "9/5";
+const aspectMobile = "487/731";
 const MainPoster = () => {
+  const [isLoad, errors, data] = useResponse<MassiveMovie[]>(
+    getMovieMassive,
+    "top_rated"
+  );
+
   return (
     <section className={styles.mainPoster}>
-      <MainSlider typeFilms="top_rated"></MainSlider>
+      <MainSlider
+        aspect={aspect}
+        aspectMobile={aspectMobile}
+        data={data}
+        isLoad={isLoad}
+      ></MainSlider>
     </section>
   );
 };

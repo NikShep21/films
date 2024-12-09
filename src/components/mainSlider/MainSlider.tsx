@@ -1,34 +1,36 @@
 "use client";
 import styles from "./MainSlider.module.scss";
-import { getMovieMassive } from "@/api/response";
-import useResponse from "@/hooks/useResponse";
 import BigCard from "../bigCard/BigCard";
 import { useEffect, useState } from "react";
 import ButtonSlider from "../ui/buttonSlider/ButtonSlider";
 import { MassiveMovie } from "@/api/types";
 
 interface SliderType {
-  typeFilms: "now_playing" | "popular" | "top_rated" | "upcoming";
+  data: MassiveMovie[] | null;
   speedAnimation?: number;
+  isLoad: boolean;
+  aspect: string;
+  aspectMobile: string;
 }
 
-const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
+const Slider = ({
+  data,
+  isLoad,
+  speedAnimation = 400,
+  aspect,
+  aspectMobile,
+}: SliderType) => {
   const [activeElem, setActiveElem] = useState<number>(2);
-  const [isLoad, errors, data] = useResponse<MassiveMovie[]>(
-    getMovieMassive,
-    typeFilms
-  );
   const [isAnimation, setIsAnimation] = useState<boolean>(true);
   const [sliderElem, setSliderElem] = useState<(MassiveMovie | undefined)[]>(
-    Array(20).fill(undefined)
+    Array(10).fill(undefined)
   );
   const [flagAnimation, setFlagAnimation] = useState<boolean>(false);
   const [widthCard, setWidthCard] = useState<number>(900);
-  const [startX, setStartX] = useState<number>(0)
-  const [isSwiping, setIsSwiping] = useState<boolean>(false)
+  const [startX, setStartX] = useState<number>(0);
+  const [isSwiping, setIsSwiping] = useState<boolean>(false);
   const offset = activeElem * -(40 + widthCard);
 
-  
   useEffect(() => {
     if (data) {
       const newSliderElem = [...data];
@@ -43,7 +45,6 @@ const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
     ) as HTMLElement | null;
     function turnOff(event: TransitionEvent) {
       if (event.target == slider) {
-        
         setFlagAnimation(false);
       }
     }
@@ -54,7 +55,7 @@ const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
     setWidthCard(swipe);
   }
   function moveLeft() {
-    if (flagAnimation) {
+    if (flagAnimation || !data) {
       return null;
     }
     setIsAnimation(true);
@@ -64,7 +65,7 @@ const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
   }
 
   function moveRight() {
-    if (flagAnimation) {
+    if (flagAnimation || !data) {
       return null;
     }
     setIsAnimation(true);
@@ -80,39 +81,35 @@ const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
       setActiveElem(activeElem === 1 ? 21 : 4);
     }
   }, [flagAnimation]);
- function handleTouchStart(e: React.TouchEvent){
-  setStartX(e.touches[0].clientX)
-  setIsSwiping(true)
-  
- }
- function handleTouchMove(e: React.TouchEvent){
-  if((!isSwiping)){
-    return null
+  function handleTouchStart(e: React.TouchEvent) {
+    setStartX(e.touches[0].clientX);
+    setIsSwiping(true);
   }
-  
-  const moveX = e.touches[0].clientX - startX
- 
-  if(moveX >60){
-    
-    moveLeft()
-    setIsSwiping(false); 
+  function handleTouchMove(e: React.TouchEvent) {
+    if (!isSwiping) {
+      return null;
+    }
+
+    const moveX = e.touches[0].clientX - startX;
+
+    if (moveX > 60) {
+      moveLeft();
+      setIsSwiping(false);
+    } else if (moveX < -60) {
+      moveRight();
+      setIsSwiping(false);
+    }
   }
-  else if(moveX < -60){
-    moveRight();
-    setIsSwiping(false); 
-  }
-  
- }
- 
 
   return (
     <div
       className={styles.slider}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      
       style={
-        widthCard < 450 ? { aspectRatio: 487 / 731, } : { aspectRatio: 9 / 5 }
+        widthCard < 450
+          ? { aspectRatio: aspectMobile }
+          : { aspectRatio: aspect }
       }
     >
       {widthCard < 450 ? null : (
@@ -146,6 +143,8 @@ const Slider = ({ typeFilms, speedAnimation = 400 }: SliderType) => {
               key={id}
               isVisibleLink={id === activeElem ? true : false}
               card={elem}
+              aspect={aspect}
+              aspectMobile={aspectMobile}
             ></BigCard>
           );
         })}
