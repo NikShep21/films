@@ -15,6 +15,7 @@ const MainPoster = () => {
   );
 
   return (
+    <>
     <section className={styles.mainPoster}>
       <MainSlider
         aspect={aspect}
@@ -23,6 +24,10 @@ const MainPoster = () => {
         isLoad={isLoad}
       ></MainSlider>
     </section>
+    <section className={styles.mainContent}>
+      
+    </section>
+    </>
   );
 };
 

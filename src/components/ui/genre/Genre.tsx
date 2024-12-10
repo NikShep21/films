@@ -19,7 +19,7 @@ const Genre = ({idGenre}:propsTipe) => {
       }
     },[])
     
-    console.log(genresColors.nameGenre)
+    
     
   return (
     <div className={styles.genre} style={{backgroundColor:genresColors[nameGenre]}}>{nameGenre}</div>

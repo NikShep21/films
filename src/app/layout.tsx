@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-
+import { Lato } from '@next/font/google';
 import "./globals.scss";
 import Header from "@/components/screens/Header/Header";
 import HeaderBottom from "@/components/screens/HeaderBottom/HeaderBottom";
-import { Provider } from "react-redux";
-import store from '@/store/index'
 import LayoutClient from "@/components/layouts/LayoutClient";
+
 export const metadata: Metadata = {
   title: "movies",
   description: "watch only interesting movies",
 };
+
+
 
 export default function RootLayout({
   children,
@@ -17,20 +18,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    
-      <html lang="en">
+    <html lang="en">
+      <head>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"
-        ></meta>
-        <body>
-          <Header />
-          <LayoutClient>
-            {children}
-          </LayoutClient>
-          <HeaderBottom />
-        </body>
-      </html>
-    
+        />
+      </head>
+      <body>
+        
+        <Header />
+        <LayoutClient>
+          {children}
+        </LayoutClient>
+        <HeaderBottom />
+      </body>
+    </html>
   );
 }
