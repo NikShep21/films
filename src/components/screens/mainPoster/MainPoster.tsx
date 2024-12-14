@@ -13,7 +13,7 @@ const MainPoster = () => {
     getMovieMassive,
     "top_rated"
   );
-
+console.log(data)
   return (
     <>
     <section className={styles.mainPoster}>
@@ -24,11 +24,9 @@ const MainPoster = () => {
         isLoad={isLoad}
       ></MainSlider>
     </section>
-    <section className={styles.mainContent}>
-      
-    </section>
+    
     </>
   );
-};
+}
 
 export default MainPoster;

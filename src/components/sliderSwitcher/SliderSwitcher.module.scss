@@ -1,0 +1,16 @@
+.nameCategory{
+    font-size: 56px;
+
+}
+.typeSliderContainer{
+    display: flex;
+    gap: 30px;
+    margin-top: 15px;
+    .typeSlider{
+        font-size: 32px;
+    }
+    .switcher{
+        position: absolute;
+        
+    }
+}

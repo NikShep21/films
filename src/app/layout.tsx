@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato } from '@next/font/google';
+
 import "./globals.scss";
 import Header from "@/components/screens/Header/Header";
 import HeaderBottom from "@/components/screens/HeaderBottom/HeaderBottom";

@@ -7,7 +7,7 @@ export async function getMovieMassive (typeReqest:string):Promise<MassiveMovie[]
     try{
         
         const response = await axios.get(`${defaultPath}/movie/${typeReqest}?api_key=${api_key}`) 
-        
+       
         return response.data.results
         
     }catch(error){
