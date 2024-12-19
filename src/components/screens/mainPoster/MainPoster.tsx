@@ -12,6 +12,7 @@ const MainPoster = () => {
   const [isLoad, errors, data] = useResponse<MassiveMovie[]>(
     getMovieMassive,
     "top_rated"
+    
   );
 console.log(data)
   return (
