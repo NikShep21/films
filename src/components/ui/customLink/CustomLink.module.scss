@@ -1,0 +1,13 @@
+.link{
+    transition: all 0.2s;
+    padding: 9px 20px;
+    color: white;
+    border-radius: 15px;
+    background-color:#DF003D ;
+    display: inline-block;
+    
+    &:hover{
+        opacity: 0.6;
+    }
+    
+}

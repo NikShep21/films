@@ -1,0 +1,37 @@
+
+.slider{
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    
+    touch-action: none;
+      
+    
+    
+    
+    .sliderLine{
+        position: relative;
+        display: flex;
+        gap: 40px;
+        height: 100%;
+        width: max-content;
+    }
+    
+    .arrowLeft{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2%;
+        height: 2%;
+        left: -5vw;
+    }
+    .arrowRight{
+        
+        position: absolute;
+        top: 50%;
+        right: -5vw;
+        transform: translateY(-50%);
+        
+    }
+
+}

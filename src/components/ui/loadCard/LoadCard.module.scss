@@ -1,0 +1,32 @@
+.loadCard {
+    position: relative;
+    background-color: #444; /* Тёмно-серый фон */
+    border-radius: 8px; /* Скругление углов */
+    overflow: hidden; /* Ограничиваем анимацию внутри блока */
+  
+    &::before {
+      content: "";
+      position: absolute;
+      top: -150%; /* Стартовое положение полосы за верхним краем */
+      left: -150%; /* Стартовое положение полосы за левым краем */
+      width: 300%; /* Ширина полосы для покрытия диагонали */
+      height: 300%; /* Высота полосы для покрытия диагонали */
+      background: linear-gradient(
+        135deg, /* Диагональный угол */
+        rgba(0, 0, 0, 0) 40%, /* Прозрачные края */
+        rgba(255, 255, 255, 0.2) 50%, /* Полупрозрачная полоса */
+        rgba(0, 0, 0, 0) 60% /* Прозрачные края */
+      );
+      animation: diagonalShimmer 1.2s infinite linear;
+    }
+  }
+  
+  @keyframes diagonalShimmer {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+    100% {
+      transform: translateX(150%) translateY(150%);
+    }
+  }
+  
