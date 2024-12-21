@@ -1,9 +1,9 @@
 'use client'
-import useResponse from '@/hooks/useResponse';
+
+
 import Slider from '../slider/Slider'
 import styles from './SliderSwitcher.module.scss'
-import { MassiveMovie } from '@/api/types';
-import { getMovieMassive } from '@/api/response';
+
 import { useState } from 'react';
 import Switcher from '../ui/Switcher/Switcher';
 

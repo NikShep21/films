@@ -14,7 +14,10 @@ interface LayoutFetchProps {
 const LayoutReq = ({children}:LayoutFetchProps) => {
     const dispatch = useDispatch()
     
-    const [isLoad,errors,data] = useResponse(getGenres,'movie')
+
+
+    const [isLoad,errors,data] = useResponse(getGenres('movie'))
+
     dispatch(setState({isLoad:isLoad,errors:errors,data:data}))
     
     
