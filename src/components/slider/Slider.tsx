@@ -1,5 +1,9 @@
 import styles from './Slider.module.scss'
-const Slider = () => {
+interface PropsType<T>{
+    data:T,
+    isLoad:boolean
+}
+const Slider = <T,>({data,isLoad}:PropsType<T>) => {
     return(
         
             <div className={styles.slider}>
