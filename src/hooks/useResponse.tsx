@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 
 
-function useResponse<T>(functionTypeResponse:Promise<T>):[isLoad:boolean,errors:Error|null,data:T|null]{
+function useResponse<T>(functionTypeResponse:Promise<T>):[data:T|null,isLoad:boolean,errors:Error|null,]{
     const [isLoad, setIsLoad] = useState<boolean>(true)
     const [errors, setErrors] = useState<Error | null>(null)
     const [data, setData] = useState<T|null>(null)
@@ -29,7 +29,7 @@ function useResponse<T>(functionTypeResponse:Promise<T>):[isLoad:boolean,errors:
         
     },[])
     
-  return [isLoad, errors, data]
+  return [data,isLoad,errors]
 }
 
 export default useResponse

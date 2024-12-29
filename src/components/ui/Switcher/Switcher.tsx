@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 interface TypeProps{
     params:string[],
-    funcChangeState:(toChange:string)=>void,
+    funcChangeState:Function
     className?:string
 
 }

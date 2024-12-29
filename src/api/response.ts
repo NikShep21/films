@@ -7,30 +7,16 @@ const api_key = process.env.NEXT_PUBLIC_API_KEY
 
 export async function getMassiveTitles(
     typeRequest: string,
-    typeTitle: 'movie'
-  ): Promise<MassiveMovie[]>;
-  
-    
-  
-export async function getMassiveTitles(
-    typeRequest: string,
-    typeTitle: 'tv'
-  ): Promise<MassiveTv[]>;
-  
-export async function getMassiveTitles (typeRequest:string,typeTitle:'tv'|'movie'){
-    try{
-        
-        const response = await axios.get(`${defaultPath}/${typeTitle}/${typeRequest}?api_key=${api_key}`) 
-
-       
-        return response.data.results
-        
-    }catch(error){
+    typeTitle: 'tv' | 'movie'
+): Promise<MassiveMovie[] | MassiveTv[]> {
+    try {
+        const response = await axios.get(`${defaultPath}/${typeTitle}/${typeRequest}?api_key=${api_key}`);
+        return response.data.results;
+    } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
-    
-}  
+}
 
 
 
