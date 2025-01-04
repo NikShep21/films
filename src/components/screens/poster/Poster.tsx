@@ -15,7 +15,7 @@ const Poster = () =>{
       
     return(
         <>
-            <SliderSwitcher NameCategory='Popular'/>
+            <SliderSwitcher  NameCategory='popular'/>
         </>
     )
 }

@@ -7,16 +7,16 @@ import { getMassiveTitles } from "@/api/response";
 
 import useResponse from "@/hooks/useResponse";
 import MainSlider from "@/components/mainSlider/MainSlider";
-import { MassiveMovie } from "@/api/types";
+import { MassiveMovie, MassiveTv } from "@/api/types";
 
 const aspect = "9/5";
 const aspectMobile = "487/731";
 const MainPoster = () => {
 
 
-  const [isLoad, errors, data] = useResponse<MassiveMovie[]>(getMassiveTitles('top_rated','movie'))
+  const [data,isLoad,errors] = useResponse(getMassiveTitles('top_rated','movie'))
  
-
+  
   return (
     <>
     <section className={styles.mainPoster}>
