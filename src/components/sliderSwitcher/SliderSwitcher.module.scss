@@ -1,16 +1,18 @@
-.nameCategory{
-    font-size: 56px;
 
-}
-.typeSliderContainer{
+
+.sliderContainer{
     display: flex;
-    gap: 30px;
-    margin-top: 15px;
-    .typeSlider{
-        font-size: 32px;
-    }
-    .switcher{
-        position: absolute;
+    flex-direction: column;
+    gap: 25px;
+    .containerInfo{
+        display: flex;
+        gap:10px;
+        align-items: center;
+        .nameCategory{
+            font-size: 40px;    
+            
+            
         
+        }
     }
 }

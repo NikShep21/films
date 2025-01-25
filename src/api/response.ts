@@ -9,6 +9,7 @@ export async function getMassiveTitles<T extends 'tv' | 'movie'>(
     typeRequest: string,
     typeTitle: T
 ): Promise<T extends 'tv' ? MassiveTv[] : MassiveMovie[]> {
+    
     try {
         const response = await axios.get(
             `${defaultPath}/${typeTitle}/${typeRequest}?api_key=${api_key}`

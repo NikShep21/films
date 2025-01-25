@@ -1,4 +1,4 @@
-export const genresColors: { [key: string]: string } = {
+export const genresMovieColors: { [key: string]: string } = {
     "Action": "#FF5733",
     "Adventure": "#FFC300",
     "Animation": "#FF69B4",
@@ -17,6 +17,26 @@ export const genresColors: { [key: string]: string } = {
     "TV Movie": "#7FFFD4",
     "Thriller": "#2F4F4F",
     "War": "#556B2F",
+    "Western": "#DEB887"
+  };
+  export const genresTvColors: { [key: string]: string } = {
+    "Action & Adventure": "#FF5733",
+    "Animation": "#FF69B4",
+    "Comedy": "#7CFC00",
+    "Krimi": "#8B0000",
+    "Dokumentarfilm": "#00BFFF",
+    "Drama": "#800000",
+    "Crime": "#808080",
+    "Family": "#6A5ACD",
+    "Familie": "#6A5ACD",
+    "Kids": "#FF6347",
+    "Mystery": "#4B0082",
+    "News": "#32CD32",
+    "Reality": "#FFD700",
+    "Sci-Fi & Fantasy": "#8A2BE2",
+    "Soap": "#D2691E",
+    "Talk": "#A52A2A",
+    "War & Politics": "#556B2F",
     "Western": "#DEB887"
   };
   

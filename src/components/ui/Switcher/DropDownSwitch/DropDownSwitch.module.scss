@@ -1,0 +1,38 @@
+.switcher{
+    display: inline-block;
+    width: max-content;
+    background-color: wheat;
+    border-radius: 16px;
+    position: relative;
+    
+    .activeElem{
+        padding: 4px 10px;
+        font-size: 22px;
+        
+        border-radius: 16px;
+        background-color:#DF003D;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        vertical-align: middle;
+    }
+    .arrow{
+        margin: auto 0;
+        height: 10px;
+        transition: all 0.2s;
+        width: 10px;
+        border-bottom: 2px solid white;
+        border-right: 2px solid white;
+        transform: rotate(-45deg);
+    }
+    .dropList{
+        
+        .elemList{
+            
+            & > button{
+                font-size: 22px;
+                padding: 4px 10px;
+            }
+        }
+    }
+}

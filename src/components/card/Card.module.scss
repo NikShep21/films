@@ -1,0 +1,63 @@
+.contentCard{
+    
+   &:hover{
+    .card{
+        transform-origin: bottom center;
+        transform: scale(1.05, 1.03);
+        .content{
+            visibility: visible;
+        }
+    }
+   }
+    .card{
+        transition: all 0.2s;
+        border-radius: 15px;
+        overflow: hidden;
+        scale: 0px;
+        .content{
+            background-color: black;
+            visibility: hidden;
+            z-index: 100;
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba($color: #000000, $alpha: 0.6);
+            
+            .contentContainer{
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                
+                height:60%;
+                margin-top: 65%;
+                padding: 0px 8%;
+                .genresContainer{
+                    display: flex;
+                    flex-direction: column;
+                    height: 45%;
+                    
+                    justify-content: center;
+                    gap: 5px;
+                    
+                }
+                .date{
+                    
+                }
+            }
+        }
+        .img{
+            max-width: 100%;
+            height: 100%;
+            
+        }
+        
+    }
+    .nameTitle{
+        font-size: clamp(11px,105%,22px);
+        white-space: nowrap;
+        margin-top: 6px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

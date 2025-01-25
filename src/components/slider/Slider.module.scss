@@ -1,0 +1,30 @@
+.slider{
+    
+    
+    position: relative;
+    overflow: clip;
+    overflow-clip-margin: 8px;
+    .arrowRight{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .arrowLeft{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    
+    .sliderLine{
+        
+        display: flex;
+        gap:15px;
+        position: relative;
+        left: 0;
+        width: max-content;
+        transition: all 0.55s;
+    }
+}

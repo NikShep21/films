@@ -12,17 +12,19 @@ interface GenreState {
     errors: Error | null;
 }
 
-const genreSlice = createSlice({
+const genreMovieSlice = createSlice({
     name: 'genres',
     initialState,
     reducers:{
         
-        setState(state, action: PayloadAction<GenreState>) {
+        setStateMovie(state, action: PayloadAction<GenreState>) {
             state.data = action.payload.data;
             state.isLoad = action.payload.isLoad;
             state.errors = action.payload.errors;
           },
     }
 })
-export const {setState} = genreSlice.actions
-export default genreSlice.reducer
+
+export const {setStateMovie} = genreMovieSlice.actions
+
+export default genreMovieSlice.reducer

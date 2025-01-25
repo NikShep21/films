@@ -68,11 +68,11 @@ const bigCard = ({
       >
         <div className={styles.content}>
           <div className={styles.genresContainer}>
-            {card !== null
-              ? card.genre_ids.map((idGenre: number, id: number) => (
-                  <Genre idGenre={idGenre} key={id} />
+            {
+               card.genre_ids.map((idGenre: number, id: number) => (
+                  <Genre typeGenre='movie' idGenre={idGenre} key={id} />
                 ))
-              : null}
+            }
           </div>
           <div className={styles.name}>
             {card.title}
@@ -90,7 +90,7 @@ const bigCard = ({
       </div>
       <img
         className={styles.img}
-        src={`${imagePath}/w1280/${card ? card[typeImage] : null}`}
+        src={`${imagePath}/w1280/${card[typeImage]}`}
         alt=""
       />
     </div>

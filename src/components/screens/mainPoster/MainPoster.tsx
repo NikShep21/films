@@ -14,7 +14,7 @@ const aspectMobile = "487/731";
 const MainPoster = () => {
 
 
-  const [data,isLoad,errors] = useResponse(getMassiveTitles('top_rated','movie'))
+  const [data,isLoad,errors] = useResponse(()=>getMassiveTitles('top_rated','movie'))
  
   
   return (

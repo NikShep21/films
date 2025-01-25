@@ -16,8 +16,16 @@ body{
 button{
     border: none;
     background-color: transparent;
-    
+    cursor: pointer;
 }
+input{
+   box-shadow: none;
+    border: none;
+    &:focus{
+        outline: none;
+    }
+}
+
 ul{
     list-style: none;
 }

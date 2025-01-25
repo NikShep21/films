@@ -32,7 +32,7 @@ const Slider = ({
   const isAnimation = useIsAnimation(sliderRef);
 
   const {widthScreen,isScreenVsm} = useResize()
-  const [widthCard,setWidthCard] = useState(900)
+  const [widthCard,setWidthCard] = useState(1000)
 
   const [startX, setStartX] = useState<number>(0);
   const [isSwiping, setIsSwiping] = useState<boolean>(false);

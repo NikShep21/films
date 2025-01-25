@@ -1,32 +1,23 @@
-'use client'
+"use client";
 
 import { getGenres } from "@/api/response";
 import { Genres } from "@/api/types";
 import useResponse from "@/hooks/useResponse";
-import { setState } from "@/store/slices/genreSlice";
-import { useDispatch} from "react-redux";
-
+import { setStateMovie} from "@/store/slices/genreMovieSlice";
+import { setStateTv} from "@/store/slices/genreTvSlice";
+import { useDispatch } from "react-redux";
 
 interface LayoutFetchProps {
-    children: React.ReactNode;
-  }
-
-const LayoutReq = ({children}:LayoutFetchProps) => {
-    const dispatch = useDispatch()
-    
-
-
-    const [data,isLoad,errors] = useResponse(getGenres('movie'))
-
-    dispatch(setState({isLoad:isLoad,errors:errors,data:data}))
-    
-    
-    
-    return(
-        <>
-            {children}
-        </>
-    )
-
+  children: React.ReactNode;
 }
-export default LayoutReq
+
+const LayoutReq = ({ children }: LayoutFetchProps) => {
+  const dispatch = useDispatch();
+
+  const [dataMovie, isLoadMovie, errorsMovie] = useResponse(() => getGenres("movie"));
+  const [dataTv, isLoadTv, errorsTv] = useResponse(() => getGenres("tv"));
+  dispatch(setStateMovie({ isLoad: isLoadMovie, errors: errorsMovie, data: dataMovie }));
+  dispatch(setStateTv({ isLoad: isLoadTv, errors: errorsTv, data: dataTv }));
+  return <>{children}</>;
+};
+export default LayoutReq;

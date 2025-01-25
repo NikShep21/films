@@ -1,0 +1,36 @@
+.switcherContainer{
+    display: inline-block;
+    width: max-content;
+    background-color: wheat;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+   .activeElem{
+       
+        position: absolute;
+        background-color:#DF003D;
+        height: 100%;
+        width: 50%;
+        border-radius: 16px;
+        transition: all 0.25s;
+        
+        
+       
+   }
+    .contentContainer{
+        
+        display: grid;
+        
+
+
+        .elemSwitcher{
+            font-size: 22px;
+            text-align: center;
+            padding: 4px 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        
+    }
+    
+}

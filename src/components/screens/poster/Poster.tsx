@@ -1,22 +1,19 @@
-'use client'
+"use client";
 
-import styles from './Poster.module.scss'
+import styles from "./Poster.module.scss";
 
+import SliderSwitcher from "@/components/sliderSwitcher/sliderSwitcher";
 
-import SliderSwitcher from '@/components/sliderSwitcher/sliderSwitcher';
-
-
-const Poster = () =>{
-
-
-    
-
+const Poster = () => {
+  return (
+    <>
+    <div className={styles.posterContainer}>
+      <SliderSwitcher NameCategory="popular" />
+      <SliderSwitcher NameCategory="top_rated" />
+      <SliderSwitcher NameCategory="now_playing" />
+    </div>
       
-      
-    return(
-        <>
-            <SliderSwitcher  NameCategory='popular'/>
-        </>
-    )
-}
-export default Poster
+    </>
+  );
+};
+export default Poster;

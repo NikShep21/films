@@ -4,6 +4,7 @@ import "./globals.scss";
 import Header from "@/components/screens/Header/Header";
 import HeaderBottom from "@/components/screens/HeaderBottom/HeaderBottom";
 import LayoutClient from "@/components/layouts/LayoutClient";
+import Footer from "@/components/screens/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "movies",
@@ -32,6 +33,7 @@ export default function RootLayout({
           {children}
         </LayoutClient>
         <HeaderBottom />
+        <Footer/>
       </body>
     </html>
   );
