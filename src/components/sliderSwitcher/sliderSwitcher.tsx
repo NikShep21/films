@@ -41,7 +41,7 @@ const SliderSwitcher = ({ NameCategory }: TypeProps) => {
         <Switcher
           typeSwitcher="dropDown"
           funcChangeState={changeStateSwitch}
-          params={["Movies", "TV"]}
+          params={["Movies", "TV",'Aboba','Tcssdd','ssssssssssssss']}
         />
       </div>
       <Slider<MassiveMovie | MassiveTv>
