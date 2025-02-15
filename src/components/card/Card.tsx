@@ -11,7 +11,7 @@ interface Props {
 }
 const Card = ({ data,widthCard }: Props) => {
   const imagePath = "https://image.tmdb.org/t/p";
-  
+  console.log(data)
 
   if (!data) {
     return (
@@ -25,9 +25,8 @@ const Card = ({ data,widthCard }: Props) => {
   }
   
  else{
-
    return (
-   <Link href={'#'} className={styles.contentCard}
+   <Link href={`/${isMovie(data) ? 'movie':'tv'}/${data.id}`} className={styles.contentCard}
    onDragStart={(e)=>e.preventDefault()}
    >
 

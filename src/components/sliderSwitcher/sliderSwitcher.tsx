@@ -3,10 +3,10 @@
 import Slider from "../slider/Slider";
 import styles from "./SliderSwitcher.module.scss";
 
-import { useEffect, useState } from "react";
+import {useRef, useState } from "react";
 import Switcher from "../ui/Switcher/Switcher";
 import useResponse from "@/hooks/useResponse";
-
+import { useResize } from "@/hooks/useResize";
 import { getMassiveTitles } from "@/api/response";
 import { MassiveMovie, MassiveTv } from "@/api/types";
 import Card from "../card/Card";
@@ -24,7 +24,8 @@ const SliderSwitcher = ({ NameCategory }: TypeProps) => {
   const [selectedTypeTitles, setSelectedTypeTitles] = useState<"Movies" | "TV">(
     "Movies"
   );
-
+const containerRef = useRef<HTMLDivElement>(null)
+const { isScreenVsm } = useResize(containerRef);
   const [data, isLoad, errors] = useResponse(
     () => getMassiveTitles(NameCategory, parseTypeTitles[selectedTypeTitles]),
     [selectedTypeTitles]
@@ -34,14 +35,14 @@ const SliderSwitcher = ({ NameCategory }: TypeProps) => {
     setSelectedTypeTitles(switchName);
   }
   return (
-    <div className={styles.sliderContainer}>
+    <div ref={containerRef} className={styles.sliderContainer}>
       <div className={styles.containerInfo}>
 
         <div className={styles.nameCategory}>{NameCategory}</div>
         <Switcher
-          typeSwitcher="dropDown"
+          typeSwitcher={isScreenVsm ? "dropDown" : "default"}
           funcChangeState={changeStateSwitch}
-          params={["Movies", "TV",'Aboba','Tcssdd','ssssssssssssss']}
+          params={["Movies", "TV" ]}
         />
       </div>
       <Slider<MassiveMovie | MassiveTv>

@@ -1,5 +1,5 @@
 import { screens } from "@/params/breakpoints";
-import { forwardRef, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 
 export const useResize = (ref?:React.RefObject<HTMLDivElement>) => {
     

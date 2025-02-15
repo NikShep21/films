@@ -1,6 +1,6 @@
 .switcher{
     display: inline-block;
-    
+    min-width: 120px;
     height: 35px;
     border-radius: 16px;
     position: relative;
@@ -23,18 +23,25 @@
         
     }
     .arrow{
+        position: relative;
         margin: auto 0;
         height: 12px;
         transition: all 0.2s;
         width: 12px;
+        
         border-bottom: 2px solid white;
         border-right: 2px solid white;
         transform: rotate(-45deg);
     }
-    .dropList{
+    .dropListContainer{
+        .dropList{
+            width: max-content;
+            min-width: 100%;
+        }
+        
         position: absolute;
         top: 0;
-        padding: 35px 10px 0px  10px;
+        padding: 35px 0px 0px 0px;
         
         
         font-size: 22px;
@@ -44,13 +51,13 @@
         width: 100%;       
         z-index: -1;
         .elemList{
+            width: 100%;
+            padding: 2px 10px;
+           
             &:last-child{
                 margin-bottom: 5px;
             }
-            & > button{
-                font-size: 22px;
-                padding: 4px 10px;
-            }
+           cursor: pointer;
         }
     }
 }

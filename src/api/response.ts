@@ -22,7 +22,6 @@ export async function getMassiveTitles<T extends 'tv' | 'movie'>(
 }
 
 
-
 export async function getGenres(typeGenre:'movie'|'tv'){
 
     try{
@@ -36,4 +35,14 @@ export async function getGenres(typeGenre:'movie'|'tv'){
         throw error;
     }
     
-}         
+}
+export async function findId(id:number){
+    try{
+        const response = await axios.get(`${defaultPath}find/${id}?api_key=${api_key}`)
+        return response.data
+    }
+    catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}    
