@@ -36,13 +36,25 @@ export async function getGenres(typeGenre:'movie'|'tv'){
     }
     
 }
-export async function findId(id:number){
+
+export async function findMediaById(id:number,type:'movie'|'tv'){
     try{
-        const response = await axios.get(`${defaultPath}find/${id}?api_key=${api_key}`)
+        const response = await axios.get(`${defaultPath}/${type}/${id}?api_key=${api_key}`)
         return response.data
     }
     catch(error){
         console.error('Error fetching data:', error);
         throw error;
     }
-}    
+}   
+
+export async function getVideos(id:number,type:'movie'|'tv'){
+    try{
+        const response = await axios.get(`${defaultPath}/${type}/${id}/videos?api_key=${api_key}`)
+        return response.data.results
+    }
+    catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}

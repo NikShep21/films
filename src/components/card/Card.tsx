@@ -1,7 +1,7 @@
 import { MassiveMovie, MassiveTv } from "@/api/types";
 import styles from "./Card.module.scss";
 import LoadCard from "../ui/loadCard/LoadCard";
-import { isMovie } from "@/utils/utils";
+import { getUrlImage, isMovie } from "@/utils/utils";
 import Link from "next/link";
 import Score from "../ui/score/Score";
 import Genre from "../ui/genre/Genre";
@@ -10,9 +10,7 @@ interface Props {
   widthCard:number;
 }
 const Card = ({ data,widthCard }: Props) => {
-  const imagePath = "https://image.tmdb.org/t/p";
-  console.log(data)
-
+  
   if (!data) {
     return (
       <>
@@ -53,7 +51,7 @@ const Card = ({ data,widthCard }: Props) => {
      </div>
        <img
          className={styles.img}
-         src={`${imagePath}/w500/${data.poster_path}`}
+         src={getUrlImage(data.poster_path, "w500")}
          alt="card"
        />
      </div>

@@ -5,6 +5,7 @@ import CustomLink from "../ui/customLink/CustomLink";
 import { useEffect, useRef, useState } from "react";
 import Genre from "../ui/genre/Genre";
 import Score from "../ui/score/Score";
+import { getUrlImage } from "@/utils/utils";
 import LoadCard from "../ui/loadCard/LoadCard";
 interface Card {
   card: any;
@@ -90,7 +91,7 @@ const bigCard = ({
       </div>
       <img
         className={styles.img}
-        src={`${imagePath}/w1280/${card[typeImage]}`}
+        src={getUrlImage(card[typeImage], "w1280")}
         alt=""
       />
     </div>
