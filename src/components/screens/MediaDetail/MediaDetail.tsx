@@ -18,8 +18,17 @@ const MediaDetail = ({type,id}:MediaDetailProps)=> {
     <>
       <main>
         
-        <div className={styles.mainDescription} style={{backgroundImage:`url(${getUrlImage(data?.backdrop_path, 'original')})`}}>
-          <div className={styles.descriptionContainer}></div>
+        <div className={styles.mainDescription} style={{backgroundImage:`linear-gradient(rgba(3,13,22,0.5),rgba(3,13,22,0.9)),url(${getUrlImage(data?.backdrop_path, 'original')})`}}>
+          <div className={styles.descriptionContainer}>
+            <div className={styles.titleColumn}>
+              <div className={styles.titleImageContainer}>
+                <img src={getUrlImage(data?.poster_path, 'w00')} alt="poster" />
+              </div>
+            </div>
+            <div>
+
+            </div>
+          </div>
 
           
         </div>
