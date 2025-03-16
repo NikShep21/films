@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MassiveMovie,Genres, MassiveTv } from "./types";
+import { MassiveMovie,Genres, MassiveTv, Movie, Tv } from "./types";
 const defaultPath = 'https://api.themoviedb.org/3'
 const imagePath = 'https://image.tmdb.org/t/p'
 const api_key = process.env.NEXT_PUBLIC_API_KEY
@@ -37,7 +37,7 @@ export async function getGenres(typeGenre:'movie'|'tv'){
     
 }
 
-export async function findMediaById(id:number,type:'movie'|'tv'){
+export async function findMediaById<T extends 'movie' | 'tv'>(id:number,type:T): Promise<T extends 'movie' ? Movie : Tv>{
     try{
         const response = await axios.get(`${defaultPath}/${type}/${id}?api_key=${api_key}`)
         return response.data

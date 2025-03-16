@@ -1,7 +1,7 @@
 .mainDescription {
   
-  width: 125%;
-  
+  width: 100%;
+  padding: 80px 0px 40px 0px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right top;
@@ -9,10 +9,12 @@
 }
 
 .descriptionContainer{
-  margin: 0 auto;
   max-width: 1100px;
-  padding: 0px 20px;
-  height:500px;
-  display:grid;
-  grid-template-columns: 1fr 3fr;
+  margin: 0 auto;
+  padding: 0 20px;
+  min-height: 500px;
+  
+}
+.image{
+  border-radius: 15px;
 }
