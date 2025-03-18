@@ -1,7 +1,8 @@
 .bgColorContainer{
     padding: 80px 20px 3% 20px ;
-    background: url('/peakpx.jpg'), rgba($color: #030D16, $alpha: 0.85);
-    background-blend-mode:overlay;
+    background: linear-gradient(to bottom, rgba(3, 13, 22, 0.88), rgba(3, 13, 22, 0.96)), url('/peakpx.jpg');
+
+    
 }
 .container{
    margin: 0 auto;

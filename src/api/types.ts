@@ -1,3 +1,4 @@
+//неправильные типы !!!!!!!
 interface BaseMedia {
     adult: boolean;
     backdrop_path: string;
@@ -44,7 +45,7 @@ interface DetailedMedia extends BaseMedia {
     production_companies: any[];
     production_countries: any[];
     spoken_languages: any[];
-    status: string;
+    status: string; 
     tagline: string;
 }
 

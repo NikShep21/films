@@ -1,57 +1,24 @@
-.mainDescription {
-  
-  width: 100%;
-  padding: 80px 0px 40px 0px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: right top;
-  
-}
 
-.descriptionContainer{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-  min-height: 500px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  .titleContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 40px;
-    .nameTitleContainer{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      .nameTitle{
-        font-size: 50px;
-        font-weight: 800;
-      }
-      .releaseDate{
-        font-size: 30px;
-        color: rgba(242, 236, 236, 0.5);
-        
-      }
-    }
-    .averageContainer{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      .releaseDate{
-        font-size: 25px;
-        color:rgba(242, 236, 236, 0.5);
-      }
-      
-    } 
-    .linkTrailer{
-      font-size: 26px;
-      text-align: center;
-    }
-  }
+.main{
+  position: relative;
 }
-.image{
-  border-radius: 15px;
+.backdropImage{
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(3,13,22,0.8),rgba(3,13,22,0.999));
+  }
+  & > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+  }
 }

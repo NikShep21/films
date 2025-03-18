@@ -1,0 +1,25 @@
+.descriptionContainer{
+    max-width: 1100px;
+    margin: 0 auto;
+  
+    padding: 10vh 20px 0px 20px;
+    min-height: 500px;
+    display: flex;
+    gap: 40px;
+    .titleImageContainer{
+      
+    }
+    .image{
+      border-radius: 15px;
+    }
+    .titleInfoContainer{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .genres{
+        display: flex;
+        
+        gap: 7px;
+      }
+    }
+  }
