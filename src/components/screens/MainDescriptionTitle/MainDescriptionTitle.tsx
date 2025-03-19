@@ -8,10 +8,23 @@ interface MainDescriptionTitleProps {
 
 const MainDescriptionTitle = ({ data }: MainDescriptionTitleProps) => {
     console.log(data)
-  if (data) {
-    const title = isMovie(data) ? data.title : data.name;
-    const releaseDate = isMovie(data) ? data.release_date : data.first_air_date;
-    const runtime = isMovie(data) ? data.runtime : data.episode_run_time[0];
+    if (!data) return null;
+
+  const isMovieType = isMovie(data);
+
+  const uniqData = isMovieType
+    ? {
+        title: data.title,
+        releaseDate: data.release_date,
+        runtime: data.runtime,
+      }
+    : {
+        title: data.name,
+        releaseDate: data.first_air_date, 
+        runtime: data.episode_run_time?.[0] || "N/A",
+      };
+    
+    
     return (
       <div className={styles.descriptionContainer}>
         <div className={styles.titleImageContainer}>
@@ -25,17 +38,28 @@ const MainDescriptionTitle = ({ data }: MainDescriptionTitleProps) => {
         </div>
         <div className={styles.titleInfoContainer}>
             <h1>
-                {title} ({releaseDate.slice(0,4)})
+                
+                {uniqData.title} ({uniqData.releaseDate.slice(0,4)})
             </h1>
             <div className={styles.genres}>
                 {
                     data.genres.map((elem,id)=><Genre idGenre={elem.id} typeGenre={isMovie(data) ? 'movie' : 'tv'}/>)
                 }
             </div>
+            <div className={styles.overviewContainer}>
+              <h2>Overview</h2>
+              <p className={styles.overview}>
+                {data.overview}
+              </p>
+            </div>
+            <div className={styles.statusContainer}>
+              
+            
+            </div>
         </div>
       </div>
     );
   }
-};
+
 
 export default MainDescriptionTitle;
