@@ -17,11 +17,15 @@ const MainDescriptionTitle = ({ data }: MainDescriptionTitleProps) => {
         title: data.title,
         releaseDate: data.release_date,
         runtime: data.runtime,
+        infoSecondLine1:['111','11'],
+        infoSecondLine2:['111','11']
       }
     : {
         title: data.name,
         releaseDate: data.first_air_date, 
         runtime: data.episode_run_time?.[0] || "N/A",
+        infoSecondLine1:['Episodes: ',data.number_of_episodes],
+        infoSecondLine2: ['Seasons: ',data.number_of_seasons]
       };
     
     
@@ -53,8 +57,18 @@ const MainDescriptionTitle = ({ data }: MainDescriptionTitleProps) => {
               </p>
             </div>
             <div className={styles.statusContainer}>
-              
-            
+              <div className={styles.line}>
+                <ul>
+                  <li>Status: <span>{data.status}</span></li>
+                  <li>Release Date: <span>{uniqData.releaseDate}</span></li>
+                  <li>Runtime: <span>{uniqData.runtime}</span></li>
+                </ul>
+                <ul>
+                  <li>{uniqData.infoSecondLine1[0]} <span>{uniqData.infoSecondLine1[1]}</span></li>
+                  <li>{uniqData.infoSecondLine2[0]} <span>{uniqData.infoSecondLine2[1]}</span></li>
+                </ul>
+              </div>
+                
             </div>
         </div>
       </div>

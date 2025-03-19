@@ -15,7 +15,7 @@
     .titleInfoContainer{
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 20px;
       .overviewContainer{
         font-size: 22px;
         .overview{
@@ -26,7 +26,22 @@
       .genres{
         display: flex;
         
-        gap: 7px;
+        gap: 8px;
+      }
+      .statusContainer{
+        .line{
+          & > ul{
+            display: flex;
+            gap: 15px;
+            font-size: 20px;
+            padding: 10px 0px;
+            border-bottom:0.5px solid gray ;
+            width: 85%;
+            & >li > span{
+              opacity: 0.6;
+            }
+          }
+        }
       }
     }
   }
