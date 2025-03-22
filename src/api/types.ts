@@ -44,6 +44,7 @@ interface DetailedMedia extends BaseMedia {
     homepage: string;
     production_companies: any[];
     production_countries: any[];
+    origin_country: string[];
     spoken_languages: any[];
     status: string; 
     tagline: string;
@@ -60,7 +61,31 @@ export interface Movie extends DetailedMedia {
     title: string;
     video: boolean;
 }
+interface CreditsCast extends CreditsGeneral{
+    cast_id:number,
+    character:string,
+    order: number
+}
+interface CreditsCrew extends CreditsGeneral{
+    department:string,
+    job:string
+}
+interface CreditsGeneral {
+    adult: boolean,
+    gender: number,
+    id:number,
+    known_for_department:string,
+    name:string,
+    original_name: string,
+    popularity:number,
+    profile_path:string,
+    credit_id: string,
+}
+export interface Credits{
+    cast:CreditsCast[],
+    crew:CreditsCrew[],
 
+}
 export interface Tv extends DetailedMedia {
     created_by: Creators[];
     episode_run_time: number[];
@@ -74,7 +99,7 @@ export interface Tv extends DetailedMedia {
     next_episode_to_air: any;
     number_of_episodes: number;
     number_of_seasons: number;
-    origin_country: string[];
+    
     original_name: string;
     seasons: any[];
     type: string;

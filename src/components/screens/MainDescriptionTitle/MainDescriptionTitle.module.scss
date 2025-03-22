@@ -6,21 +6,21 @@
     min-height: 500px;
     display: flex;
     gap: 40px;
-    .titleImageContainer{
-      
-    }
+    
     .image{
       border-radius: 15px;
     }
     .titleInfoContainer{
       display: flex;
+      
+      width: 100%;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
       .overviewContainer{
         font-size: 22px;
         .overview{
           font-size: 16px;
-          max-width: 85%;
+          max-width: 95%;
         }
       }
       .genres{
@@ -36,7 +36,7 @@
             font-size: 20px;
             padding: 10px 0px;
             border-bottom:0.5px solid gray ;
-            width: 85%;
+            width: 95%;
             & >li > span{
               opacity: 0.6;
             }

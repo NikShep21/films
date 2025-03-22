@@ -7,73 +7,74 @@ interface MainDescriptionTitleProps {
 }
 
 const MainDescriptionTitle = ({ data }: MainDescriptionTitleProps) => {
-    console.log(data)
-    if (!data) return null;
+  
+  if (!data) return null;
 
   const isMovieType = isMovie(data);
+  
+  const uniqData = [
+    [
+      { label: "Status: ", content: data.status },
+      { label: "Release Date: ", content: isMovieType ? data.release_date : data.first_air_date },
+      { label: "Runtime: ", content: isMovieType ? data.runtime : data.episode_run_time?.[0] || "N/A" },
+    ],
+    [
+      { label: isMovieType ? "Budget: " : "Episodes: ", content: isMovieType ? data.budget : data.number_of_episodes },
+      { label: isMovieType ? "Tagline: " : "Seasons: ", content: isMovieType ? data.tagline || "N/A" : data.number_of_seasons },
+    ],
+    [
+      { label: "Country: ", content: data.origin_country?.[0] || "N/A" },
+    ],
+  ];
+  
 
-  const uniqData = isMovieType
-    ? {
-        title: data.title,
-        releaseDate: data.release_date,
-        runtime: data.runtime,
-        infoSecondLine1:['111','11'],
-        infoSecondLine2:['111','11']
-      }
-    : {
-        title: data.name,
-        releaseDate: data.first_air_date, 
-        runtime: data.episode_run_time?.[0] || "N/A",
-        infoSecondLine1:['Episodes: ',data.number_of_episodes],
-        infoSecondLine2: ['Seasons: ',data.number_of_seasons]
-      };
-    
-    
-    return (
-      <div className={styles.descriptionContainer}>
-        <div className={styles.titleImageContainer}>
-          {data ? (
-            <img
-              className={styles.image}
-              src={getUrlImage(data.poster_path, "w342")}
-              alt="poster"
+  return (
+    <div className={styles.descriptionContainer}>
+      <div className={styles.titleImageContainer}>
+        {data ? (
+          <img
+            className={styles.image}
+            src={getUrlImage(data.poster_path, "w342")}
+            alt="poster"
+          />
+        ) : null}
+      </div>
+      <div className={styles.titleInfoContainer}>
+        <h1>
+          {isMovieType ? data.title : data.name} ({(isMovieType ? data.release_date : data.first_air_date).slice(0, 4)})
+        </h1>
+        <div className={styles.genres}>
+          {data.genres.map((elem, id) => (
+            <Genre
+              idGenre={elem.id}
+              typeGenre={isMovie(data) ? "movie" : "tv"}
             />
-          ) : null}
+          ))}
         </div>
-        <div className={styles.titleInfoContainer}>
-            <h1>
-                
-                {uniqData.title} ({uniqData.releaseDate.slice(0,4)})
-            </h1>
-            <div className={styles.genres}>
-                {
-                    data.genres.map((elem,id)=><Genre idGenre={elem.id} typeGenre={isMovie(data) ? 'movie' : 'tv'}/>)
-                }
-            </div>
-            <div className={styles.overviewContainer}>
-              <h2>Overview</h2>
-              <p className={styles.overview}>
-                {data.overview}
-              </p>
-            </div>
-            <div className={styles.statusContainer}>
-              <div className={styles.line}>
-                <ul>
-                  <li>Status: <span>{data.status}</span></li>
-                  <li>Release Date: <span>{uniqData.releaseDate}</span></li>
-                  <li>Runtime: <span>{uniqData.runtime}</span></li>
+        <div className={styles.overviewContainer}>
+          <h2>Overview</h2>
+          <p className={styles.overview}>{data.overview}</p>
+        </div>
+        <div className={styles.statusContainer}>
+          <div className={styles.line}>
+            {
+              uniqData.map((group,id)=>(
+                <ul key={id}>
+                  {
+                    group.map((item,subId)=>(
+                      <li key={subId}>
+                        {item.label} <span>{item.content}</span>
+                      </li>
+                    ))
+                  }
                 </ul>
-                <ul>
-                  <li>{uniqData.infoSecondLine1[0]} <span>{uniqData.infoSecondLine1[1]}</span></li>
-                  <li>{uniqData.infoSecondLine2[0]} <span>{uniqData.infoSecondLine2[1]}</span></li>
-                </ul>
-              </div>
-                
-            </div>
+              ))
+            }
+          </div>
         </div>
       </div>
-    );
-  }
-
+    </div>
+  );
+};
 
 export default MainDescriptionTitle;

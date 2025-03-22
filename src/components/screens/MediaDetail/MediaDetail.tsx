@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./MediaDetail.module.scss";
-import { findMediaById, getVideos } from "@/api/response";
+import { findMediaById, getCredits, getVideos } from "@/api/response";
 import useResponse from "@/hooks/useResponse";
 import { getUrlImage} from "@/utils/utils";
 import MainDescriptionTitle from "../MainDescriptionTitle/MainDescriptionTitle";
@@ -11,14 +11,12 @@ interface MediaDetailProps {
 
 const MediaDetail = ({ type, id }: MediaDetailProps) => {
   const [data, isLoad, errors] = useResponse(() => findMediaById(id, type));
-  const [video, isLoadVideo, errorsVideo] = useResponse(() =>
-    getVideos(id, type)
-  );
+  
+  const [credits, isLoadCredits, errorsCredits] = useResponse(()=> getCredits(id,type))
+  
 
-  console.log(data);
-  console.log(video);
   if (data) {
-    
+    console.log(credits)
 
     return (
       <>
@@ -30,7 +28,9 @@ const MediaDetail = ({ type, id }: MediaDetailProps) => {
             />
           </div>
           <MainDescriptionTitle data={data}/>
-         
+          <div>
+            
+          </div>
         </main>
       </>
     );

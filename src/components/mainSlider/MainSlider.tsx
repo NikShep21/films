@@ -1,6 +1,6 @@
 "use client";
 import styles from "./MainSlider.module.scss";
-import BigCard from "../bigCard/BigCard";
+import BigCard from "../CardsSlider/bigCard/BigCard";
 import { useEffect, useRef, useState } from "react";
 import ButtonSlider from "../ui/buttonSlider/ButtonSlider";
 import { MassiveMovie } from "@/api/types";
@@ -27,12 +27,12 @@ const Slider = ({
     Array(10).fill(undefined)
   );
 
-  const sliderRef = useRef<HTMLDivElement>(null)
+  const sliderRef = useRef<HTMLDivElement>(null);
   const [flagAnimation, setFlagAnimation] = useState<boolean>(true);
   const isAnimation = useIsAnimation(sliderRef);
 
-  const {widthScreen,isScreenVsm} = useResize()
-  const [widthCard,setWidthCard] = useState(1000)
+  const { widthScreen, isScreenVsm } = useResize();
+  const [widthCard, setWidthCard] = useState(1000);
 
   const [startX, setStartX] = useState<number>(0);
   const [isSwiping, setIsSwiping] = useState<boolean>(false);
@@ -47,7 +47,7 @@ const Slider = ({
       setSliderElem(newSliderElem);
     }
   }, [isLoad]);
-  
+
   function swipeWidthCard(swipe: number) {
     setWidthCard(swipe);
   }
@@ -58,7 +58,6 @@ const Slider = ({
     }
     setFlagAnimation(true);
     setActiveElem(activeElem - 1);
-
   }
 
   function moveRight() {
@@ -67,7 +66,6 @@ const Slider = ({
     }
     setFlagAnimation(true);
     setActiveElem(activeElem + 1);
-    
   }
   //переход слайдера на начальную позицию
   useEffect(() => {
@@ -106,9 +104,7 @@ const Slider = ({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       style={
-        isScreenVsm 
-          ? { aspectRatio: aspectMobile }
-          : { aspectRatio: aspect }
+        isScreenVsm ? { aspectRatio: aspectMobile } : { aspectRatio: aspect }
       }
     >
       {isScreenVsm ? null : (
@@ -130,10 +126,12 @@ const Slider = ({
       <div
         style={{
           transform: `translateX(${offset}px)`,
-          transition: flagAnimation ? `transform ${speedAnimation}ms` : undefined,
+          transition: flagAnimation
+            ? `transform ${speedAnimation}ms`
+            : undefined,
         }}
         className={styles.sliderLine}
-        ref = {sliderRef}
+        ref={sliderRef}
       >
         {sliderElem.map((elem, id) => {
           return (

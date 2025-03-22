@@ -1,12 +1,12 @@
 "use client";
 import { headers } from "next/headers";
 import styles from "./BigCard.module.scss";
-import CustomLink from "../ui/customLink/CustomLink";
+import CustomLink from "../../ui/customLink/CustomLink";
 import { useEffect, useRef, useState } from "react";
-import Genre from "../ui/genre/Genre";
-import Score from "../ui/score/Score";
+import Genre from "../../ui/genre/Genre";
+import Score from "../../ui/score/Score";
 import { getUrlImage } from "@/utils/utils";
-import LoadCard from "../ui/loadCard/LoadCard";
+import LoadCard from "../../ui/loadCard/LoadCard";
 interface Card {
   card: any;
   isVisibleLink?: boolean;
@@ -27,7 +27,6 @@ const bigCard = ({
 }: Card) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
-  
   useEffect(() => {
     if (cardRef.current) {
       swipeCard(cardRef.current.getBoundingClientRect().width);
@@ -69,11 +68,9 @@ const bigCard = ({
       >
         <div className={styles.content}>
           <div className={styles.genresContainer}>
-            {
-               card.genre_ids.map((idGenre: number, id: number) => (
-                  <Genre typeGenre='movie' idGenre={idGenre} key={id} />
-                ))
-            }
+            {card.genre_ids.map((idGenre: number, id: number) => (
+              <Genre typeGenre="movie" idGenre={idGenre} key={id} />
+            ))}
           </div>
           <div className={styles.name}>
             {card.title}
