@@ -1,0 +1,20 @@
+.container{
+    overflow: hidden;
+    .image{
+        border-radius: 20px;
+        
+        width: 100%;
+        
+    }
+    .infoContainer{
+        .who{
+            opacity: 0.5;
+            font-size: 13.5px;
+        }
+        .namePerson{
+            font-size: 15px;
+            
+            
+        }
+    }
+}

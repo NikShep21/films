@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MassiveMovie,Genres, MassiveTv, Movie, Tv, Credits } from "./types";
+import { MassiveMovie,Genres, MassiveTv, Movie, Tv, Credits, CreditsCrew, CreditsCast } from "./types";
 const defaultPath = 'https://api.themoviedb.org/3'
 const imagePath = 'https://image.tmdb.org/t/p'
 const api_key = process.env.NEXT_PUBLIC_API_KEY
@@ -47,10 +47,10 @@ export async function findMediaById<T extends 'movie' | 'tv'>(id:number,type:T):
         throw error;
     }
 }   
-export async function getCredits(id:number, type:'movie' | 'tv'){
+export async function getCredits<T extends 'crew'|'cast'>(id:number, type:'movie' | 'tv',typeCredits:T):Promise<T extends 'crew' ? CreditsCrew[] : CreditsCast[]>{
     try{
         const response = await axios.get(`${defaultPath}/${type}/${id}/credits?api_key=${api_key}`)
-        return response.data
+        return response.data[typeCredits] as T extends 'crew' ? CreditsCrew[] : CreditsCast[];
     }
     catch(error){
         console.error('Error fetching data:', error);

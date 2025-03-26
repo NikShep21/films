@@ -1,0 +1,16 @@
+.imagePlaceholder{
+    border-radius: 20px;
+    background-color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(158deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(5,142,251,1) 100%);
+    .content{
+        
+        text-align: center  ;
+        
+       
+    }
+}

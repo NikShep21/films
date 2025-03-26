@@ -61,12 +61,12 @@ export interface Movie extends DetailedMedia {
     title: string;
     video: boolean;
 }
-interface CreditsCast extends CreditsGeneral{
+export interface CreditsCast extends CreditsGeneral{
     cast_id:number,
     character:string,
     order: number
 }
-interface CreditsCrew extends CreditsGeneral{
+export interface CreditsCrew extends CreditsGeneral{
     department:string,
     job:string
 }

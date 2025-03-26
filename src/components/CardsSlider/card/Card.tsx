@@ -24,7 +24,7 @@ const Card = ({ data, widthCard }: Props) => {
         onDragStart={(e) => e.preventDefault()}
       >
         <div
-          style={{ aspectRatio: "487/731", width: `${widthCard}px` }}
+          style={{width: `${widthCard}px` }}
           className={styles.card}
         >
           <div className={styles.content}>

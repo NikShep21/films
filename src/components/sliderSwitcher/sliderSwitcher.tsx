@@ -9,49 +9,46 @@ import useResponse from "@/hooks/useResponse";
 import { useResize } from "@/hooks/useResize";
 import { getMassiveTitles } from "@/api/response";
 import { MassiveMovie, MassiveTv } from "@/api/types";
-import Card from "../CardsSlider/card/Card";
+import Card from "../CardsSlider/card/Card"
 
-interface TypeProps {
-  NameCategory: string;
+interface TypeProps<T, S extends string> {
+  funcResponse:(type:S)=>Promise<T[]>,
+  paramsSwitcher:S[],
+  nameCategory:string
+  renderItem: (item: T | null, index: number, widthCard: number ) => JSX.Element;
 }
 
-const parseTypeTitles: { Movies: "movie"; TV: "tv" } = {
-  Movies: "movie",
-  TV: "tv",
-};
 
-const SliderSwitcher = ({ NameCategory }: TypeProps) => {
-  const [selectedTypeTitles, setSelectedTypeTitles] = useState<"Movies" | "TV">(
-    "Movies"
-  );
+const SliderSwitcher = <T, S extends string>({ funcResponse, paramsSwitcher,renderItem, nameCategory }: TypeProps<T, S>) => {
+  const [selectedTypeTitles, setSelectedTypeTitles] = useState<S>(
+    paramsSwitcher[0]
+  ); 
   const containerRef = useRef<HTMLDivElement>(null);
   const { isScreenVsm } = useResize(containerRef);
   const [data, isLoad, errors] = useResponse(
-    () => getMassiveTitles(NameCategory, parseTypeTitles[selectedTypeTitles]),
+    () => funcResponse(selectedTypeTitles),
     [selectedTypeTitles]
   );
 
-  function changeStateSwitch(switchName: "Movies" | "TV") {
+  function changeStateSwitch(switchName:S) {
     setSelectedTypeTitles(switchName);
   }
   return (
     <div ref={containerRef} className={styles.sliderContainer}>
       <div className={styles.containerInfo}>
-        <div className={styles.nameCategory}>{NameCategory}</div>
+        <div className={styles.nameCategory}>{nameCategory}</div>
         <Switcher
           typeSwitcher={isScreenVsm ? "dropDown" : "default"}
           funcChangeState={changeStateSwitch}
-          params={["Movies", "TV"]}
+          params={paramsSwitcher}
         />
       </div>
-      <Slider<MassiveMovie | MassiveTv>
+      <Slider<T>
         key={selectedTypeTitles}
         data={data}
         isLoad={isLoad}
         maxWidthCard={169}
-        renderItem={(item, index, widthCard) => (
-          <Card key={index} data={item} widthCard={widthCard} />
-        )}
+        renderItem={renderItem}
       />
     </div>
   );

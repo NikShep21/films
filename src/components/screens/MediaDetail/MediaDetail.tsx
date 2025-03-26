@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import styles from "./MediaDetail.module.scss";
-import { findMediaById, getCredits, getVideos } from "@/api/response";
+import { findMediaById, getCredits, getGenres, getVideos } from "@/api/response";
 import useResponse from "@/hooks/useResponse";
 import { getUrlImage} from "@/utils/utils";
+import SliderSwitcher from "@/components/sliderSwitcher/SliderSwitcher";
 import MainDescriptionTitle from "../MainDescriptionTitle/MainDescriptionTitle";
+import { CreditsCast, CreditsCrew } from "@/api/types";
+import CardCredit from "@/components/CardsSlider/CardCredit/CardCredit";
+
 interface MediaDetailProps {
   type: "movie" | "tv";
   id: number;
@@ -11,12 +15,8 @@ interface MediaDetailProps {
 
 const MediaDetail = ({ type, id }: MediaDetailProps) => {
   const [data, isLoad, errors] = useResponse(() => findMediaById(id, type));
-  
-  const [credits, isLoadCredits, errorsCredits] = useResponse(()=> getCredits(id,type))
-  
-
   if (data) {
-    console.log(credits)
+   
 
     return (
       <>
@@ -28,8 +28,16 @@ const MediaDetail = ({ type, id }: MediaDetailProps) => {
             />
           </div>
           <MainDescriptionTitle data={data}/>
-          <div>
-            
+          <div className={styles.sliderContainer}>
+              <SliderSwitcher<CreditsCast|CreditsCrew,'cast'|'crew'>
+                nameCategory="Credits"
+                paramsSwitcher={['cast','crew']}
+               funcResponse={(typeCredits)=>getCredits(id,type,typeCredits)}
+              renderItem={(item,index,widthCard) => (
+                <CardCredit widthCard={widthCard} key={index} data={item}/>
+              )}
+              />
+
           </div>
         </main>
       </>

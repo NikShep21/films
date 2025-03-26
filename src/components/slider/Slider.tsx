@@ -37,7 +37,8 @@ const Slider = <T,>({
   const [isSwiping, setIsSwiping] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
 
-  
+  console.log('countElems: ',countElems)
+  console.log('activeElem: ',activeElem)
   useEffect(() => {
     setWidthCard(widthScreen / countElems - (15 - 15 / countElems));
   }, [widthScreen]);
@@ -75,7 +76,7 @@ const Slider = <T,>({
   function handleTouchStart(e: React.TouchEvent) {
     setStartX(e.touches[0].clientX);
     setIsSwiping(true);
-    console.log('start')
+    
   }
   function handleTouchMove(e: React.TouchEvent) {
     if (!isSwiping) {
@@ -84,7 +85,7 @@ const Slider = <T,>({
 
     const moveX = e.touches[0].clientX - startX;
 
-    if (moveX >60) {
+    if (moveX > 60) {
       moveLeft();
       setIsSwiping(false);
     } else if (moveX < -60) {
@@ -107,7 +108,7 @@ const Slider = <T,>({
           type="left"
         />
       )}
-      {activeElem + countElems === sliderElems.length ? null : (
+      {activeElem + countElems >= sliderElems.length ? null : (
         <ButtonSlider
           onClick={moveRight}
           size={`${widthCard / 14 + 10}px`}
