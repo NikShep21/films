@@ -7,6 +7,7 @@ import SliderSwitcher from "@/components/sliderSwitcher/SliderSwitcher";
 import MainDescriptionTitle from "../MainDescriptionTitle/MainDescriptionTitle";
 import { CreditsCast, CreditsCrew } from "@/api/types";
 import CardCredit from "@/components/CardsSlider/CardCredit/CardCredit";
+import SlidersTitle from "../SlidersTitile/SlidersTitle";
 
 interface MediaDetailProps {
   type: "movie" | "tv";
@@ -28,17 +29,7 @@ const MediaDetail = ({ type, id }: MediaDetailProps) => {
             />
           </div>
           <MainDescriptionTitle data={data}/>
-          <div className={styles.sliderContainer}>
-              <SliderSwitcher<CreditsCast|CreditsCrew,'cast'|'crew'>
-                nameCategory="Credits"
-                paramsSwitcher={['cast','crew']}
-               funcResponse={(typeCredits)=>getCredits(id,type,typeCredits)}
-              renderItem={(item,index,widthCard) => (
-                <CardCredit widthCard={widthCard} key={index} data={item}/>
-              )}
-              />
-
-          </div>
+          <SlidersTitle type={type} id={id}/>
         </main>
       </>
     );

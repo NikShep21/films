@@ -46,6 +46,7 @@ const MainDescriptionTitle = ({ data }: MainDescriptionTitleProps) => {
         <div className={styles.genres}>
           {data.genres.map((elem, id) => (
             <Genre
+              key={id}
               idGenre={elem.id}
               typeGenre={isMovie(data) ? "movie" : "tv"}
             />

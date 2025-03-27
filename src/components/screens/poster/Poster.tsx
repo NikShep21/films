@@ -6,6 +6,7 @@ import { MassiveMovie, MassiveTv } from "@/api/types";
 import Card from "@/components/CardsSlider/card/Card";
 import SliderSwitcher from "@/components/sliderSwitcher/SliderSwitcher";
 
+
 const Poster = () => {
   return (
     <div className={styles.posterContainer}>
