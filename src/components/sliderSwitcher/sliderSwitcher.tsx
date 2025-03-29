@@ -2,14 +2,10 @@
 
 import Slider from "../slider/Slider";
 import styles from "./SliderSwitcher.module.scss";
-
 import { useRef, useState } from "react";
 import Switcher from "../ui/Switcher/Switcher";
 import useResponse from "@/hooks/useResponse";
 import { useResize } from "@/hooks/useResize";
-import { getMassiveTitles } from "@/api/response";
-import { MassiveMovie, MassiveTv } from "@/api/types";
-import Card from "../CardsSlider/card/Card"
 
 interface TypeProps<T, S extends string> {
   funcResponse:(type:S)=>Promise<T[]>,

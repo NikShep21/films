@@ -1,0 +1,16 @@
+.sliderContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    .containerInfo{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .nameCategory{
+            font-size: 40px;    
+            
+            
+        
+        }
+    }
+}
