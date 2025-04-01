@@ -19,12 +19,13 @@ const Slider = <T,>({
   maxWidthCard,
   renderItem,
 }: PropsType<T>) => {
+  console.log('parsedData',data)
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
   const [sliderElems, setSliderElems] = useState<(T | null)[]>(
     Array(10).fill(null)
   );
-
+ 
   const { widthScreen } = useResize(sliderContainerRef);
 
   const [activeElem, setActiveElem] = useState<number>(0);
@@ -72,7 +73,7 @@ const Slider = <T,>({
     } else {
       setSliderElems(Array(10).fill(null));
     }
-  }, [isLoad]);
+  }, [data]);
   function handleTouchStart(e: React.TouchEvent) {
     setStartX(e.touches[0].clientX);
     setIsSwiping(true);
@@ -93,6 +94,7 @@ const Slider = <T,>({
       setIsSwiping(false);
     }
   }
+  console.log(sliderElems)
   return (
     <div className={styles.slider} 
     ref={sliderContainerRef}

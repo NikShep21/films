@@ -23,3 +23,12 @@
   }
   
 }
+.content{
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .slidersContainer{
+    margin-top: 4%;
+  }
+}

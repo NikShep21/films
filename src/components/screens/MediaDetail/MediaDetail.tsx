@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./MediaDetail.module.scss";
-import { findMediaById, getCredits, getGenres, getVideos } from "@/api/response";
+import { findMediaById} from "@/api/response";
 import useResponse from "@/hooks/useResponse";
 import { getUrlImage} from "@/utils/utils";
-import SliderSwitcher from "@/components/sliderSwitcher/SliderSwitcher";
+
 import MainDescriptionTitle from "../MainDescriptionTitle/MainDescriptionTitle";
 import { CreditsCast, CreditsCrew } from "@/api/types";
 import CardCredit from "@/components/CardsSlider/CardCredit/CardCredit";
-import SlidersTitle from "../SlidersTitile/SlidersTitle";
+
+import SliderCredits from "../sliders/sliderCredits/sliderCredits";
 
 interface MediaDetailProps {
   type: "movie" | "tv";
@@ -28,8 +29,14 @@ const MediaDetail = ({ type, id }: MediaDetailProps) => {
               alt="backdrop"
             />
           </div>
-          <MainDescriptionTitle data={data}/>
-          <SlidersTitle type={type} id={id}/>
+          <div className={styles.content}>
+            <MainDescriptionTitle data={data}/>
+            <div className={styles.slidersContainer}>
+              <SliderCredits id={id} type={type}/>
+            </div>
+          </div>
+          
+          
         </main>
       </>
     );

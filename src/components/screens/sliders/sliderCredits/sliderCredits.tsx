@@ -1,47 +1,58 @@
+'use client'
 import { getCredits} from '@/api/response'
 import Slider from '@/components/slider/Slider'
 import Switcher from '@/components/ui/Switcher/Switcher'
 import { useResize } from '@/hooks/useResize'
 import useResponse from '@/hooks/useResponse'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '../baseStyles.module.scss'
+import { CreditsCast, CreditsCrew } from '@/api/types'
+import CardCredit from '@/components/CardsSlider/CardCredit/CardCredit'
 
 interface Props {
-  id?: number
-  type?: 'movie'|'tv'
+  id: number
+  type: 'movie' | 'tv'
 }
 
-const SliderPopular = ({id, type}:Props) => {
-    const [typeTitle, setTypeTitle] = useState<'Crew'|'Cast'>('Crew')
+const SliderCredits = ({id, type}:Props) => {
+    const [typeCredits, setTypeCredits] = useState<'Crew'|'Cast'>('Crew')
     
-    const [data, isLoad, errors] = useResponse(()=> getCredits(),[typeTitle])
+    const [data, isLoad, errors] = useResponse(()=> getCredits(id,type,typeCredits === 'Crew' ? 'crew' : 'cast'),[typeCredits])
+   
+    const [parsedData, setParsedData] = useState<CreditsCast[]|CreditsCrew[]|null>(null)
     const containerRef = useRef<HTMLDivElement>(null);
     const { isScreenVsm } = useResize(containerRef);
+    useEffect(() => {
+        if (data) {
+          
+            setParsedData(data.slice(0, 20))
+        }
+    }, [isLoad])
     function setType(switchName:'Crew'|'Cast'){
-        setTypeTitle(switchName)
+        setTypeCredits(switchName)
     }
-    
+ 
   return (
     <div ref={containerRef} className={styles.sliderContainer}>
       <div className={styles.containerInfo}>
-        <div className={styles.nameCategory}>Popular</div>
+        <div className={styles.nameCategory}>Credits</div>
         <Switcher
           typeSwitcher={isScreenVsm ? "dropDown" : "default"}
           funcChangeState={setType}
           params={['Crew','Cast']}
         />
       </div>
-      <Slider<|MassiveTv>
+      <Slider<CreditsCast|CreditsCrew>
         
-        data={data}
+        data={parsedData}
         isLoad={isLoad}
         maxWidthCard={169}
         renderItem={(item, index, widthCard) => (
-            <Card key={index} data={item} widthCard={widthCard} />
+          <CardCredit widthCard={widthCard} key={index} data={item}/>
           )}
       />
     </div>
   )
 }
 
-export default SliderPopular
+export default SliderCredits

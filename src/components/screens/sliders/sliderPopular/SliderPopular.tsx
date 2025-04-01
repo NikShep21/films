@@ -1,3 +1,4 @@
+'use client'
 import { getMassiveTitles } from '@/api/response'
 import { MassiveMovie, MassiveTv } from '@/api/types'
 import Card from '@/components/CardsSlider/card/Card'

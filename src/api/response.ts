@@ -20,7 +20,17 @@ export async function getMassiveTitles<T extends 'tv' | 'movie'>(
         throw error;
     }
 }
+export async function getTrending(time:'day'|'week', type:'all'|'tv'|'movie'|'person' = 'all'): Promise<MassiveMovie[] | MassiveTv[]>{
+    try{
+        const response = await axios.get(`${defaultPath}/trending/${type}/${time}?api_key=${api_key}`)
+        return response.data.results
+    }
+    catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
 
+}
 
 export async function getGenres(typeGenre:'movie'|'tv'){
 
