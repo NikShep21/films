@@ -7,12 +7,13 @@ import Switcher from '@/components/ui/Switcher/Switcher'
 import { useResize } from '@/hooks/useResize'
 import useResponse from '@/hooks/useResponse'
 import { defaultOverrides } from 'next/dist/server/require-hook'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '../baseStyles.module.scss'
 const SliderTopRated = () => {
     const [typeTitle, setTypeTitle] = useState<'Day'|'Week'>('Day')
     
     const [data, isLoad, errors] = useResponse(()=> getTrending(typeTitle === 'Day' ? 'day':'week'),[typeTitle])
+
     const containerRef = useRef<HTMLDivElement>(null);
     const { isScreenVsm } = useResize(containerRef);
     function setType(switchName:'Day'|'Week'){

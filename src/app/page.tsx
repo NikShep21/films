@@ -18,7 +18,7 @@ export default function Home() {
           <SliderPopular/>
           <SliderTopRated/>
           <SliderVideos/>
-          <SliderNowPlaying/>
+          <SliderNowPlaying/> 
         </div>
       
 

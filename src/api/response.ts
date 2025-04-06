@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MassiveMovie,Genres, MassiveTv, Movie, Tv, Credits, CreditsCrew, CreditsCast } from "./types";
+import { MassiveMovie,Genres, MassiveTv, Movie, Tv, Credits, CreditsCrew, CreditsCast, CreditsGeneral, VideoType } from "./types";
 const defaultPath = 'https://api.themoviedb.org/3'
 const imagePath = 'https://image.tmdb.org/t/p'
 const api_key = process.env.NEXT_PUBLIC_API_KEY
@@ -20,10 +20,11 @@ export async function getMassiveTitles<T extends 'tv' | 'movie'>(
         throw error;
     }
 }
-export async function getTrending(time:'day'|'week', type:'all'|'tv'|'movie'|'person' = 'all'): Promise<MassiveMovie[] | MassiveTv[]>{
+export async function getTrending(time:'day'|'week'): Promise<(MassiveMovie | MassiveTv)[]>{
     try{
-        const response = await axios.get(`${defaultPath}/trending/${type}/${time}?api_key=${api_key}`)
-        return response.data.results
+        const response = await axios.get(`${defaultPath}/trending/all/${time}?api_key=${api_key}`)
+        const data = response.data.results.filter((item:MassiveMovie | MassiveTv | CreditsGeneral)=> 'vote_average' in item )// проверяем, чтобы это был не фильм или сериал)
+        return data
     }
     catch(error){
         console.error('Error fetching data:', error);
@@ -67,9 +68,10 @@ export async function getCredits<T extends 'crew'|'cast'>(id:number, type:'movie
         throw error;
     }
 }
-export async function getVideos(id:number,type:'movie'|'tv'){
+export async function getVideos(id:number,type:'movie'|'tv'):Promise<VideoType[]>{
     try{
         const response = await axios.get(`${defaultPath}/${type}/${id}/videos?api_key=${api_key}`)
+        console.log(response.data)
         return response.data.results
     }
     catch(error){

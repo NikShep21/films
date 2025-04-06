@@ -19,7 +19,7 @@ const Slider = <T,>({
   maxWidthCard,
   renderItem,
 }: PropsType<T>) => {
-  console.log('parsedData',data)
+
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
   const [sliderElems, setSliderElems] = useState<(T | null)[]>(
@@ -38,8 +38,7 @@ const Slider = <T,>({
   const [isSwiping, setIsSwiping] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
 
-  console.log('countElems: ',countElems)
-  console.log('activeElem: ',activeElem)
+
   useEffect(() => {
     setWidthCard(widthScreen / countElems - (15 - 15 / countElems));
   }, [widthScreen]);
@@ -94,7 +93,7 @@ const Slider = <T,>({
       setIsSwiping(false);
     }
   }
-  console.log(sliderElems)
+
   return (
     <div className={styles.slider} 
     ref={sliderContainerRef}

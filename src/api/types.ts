@@ -1,3 +1,5 @@
+import { off } from "process";
+
 //неправильные типы !!!!!!!
 interface BaseMedia {
     adult: boolean;
@@ -11,7 +13,18 @@ interface BaseMedia {
     vote_average: number;
     vote_count: number;
 }
-
+export interface VideoType{
+    id: string;
+    iso_639_1: string;
+    iso_3166_1: string;
+    key: string;
+    name: string;
+    offical: boolean;
+    published_at: string;
+    site: string;
+    size: number;
+    type: string;
+}
 export interface MassiveMovie extends BaseMedia {
     original_title: string;
     title: string;
@@ -65,12 +78,14 @@ export interface CreditsCast extends CreditsGeneral{
     cast_id:number,
     character:string,
     order: number
+    credit_id: string,
 }
 export interface CreditsCrew extends CreditsGeneral{
     department:string,
     job:string
+    credit_id: string,
 }
-interface CreditsGeneral {
+export interface CreditsGeneral {
     adult: boolean,
     gender: number,
     id:number,
@@ -79,7 +94,7 @@ interface CreditsGeneral {
     original_name: string,
     popularity:number,
     profile_path:string,
-    credit_id: string,
+    
 }
 export interface Credits{
     cast:CreditsCast[],

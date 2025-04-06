@@ -9,7 +9,7 @@ interface Props{
 }
 const CardCredit = ({data,widthCard}:Props) => {
   if(!data){
-    console.log(widthCard)
+   
     return (
       <>
       
