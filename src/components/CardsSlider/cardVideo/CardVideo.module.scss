@@ -2,7 +2,7 @@
     scale: 0px;
     transition: all 0.15s ease;
     cursor: pointer;
-    
+    overflow: visible;
     &:hover{
         
         transform: scale(1.04, 1.04);
