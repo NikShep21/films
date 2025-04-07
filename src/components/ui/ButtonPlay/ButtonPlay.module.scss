@@ -2,11 +2,39 @@
     width: var(--size);
     height: var(--size);
     position: relative;
-  
+    cursor: pointer;
     --thick: calc(var(--size) / 7);
     --lenElement: calc(var(--size) * 0.88);
     --offset: calc(var(--thick) * 0.577);
-  
+    z-index: 1;
+    transition: all 0.2s ease;
+    .lineLeft,
+      .lineBottom,
+      .lineTop{
+        &:after{
+
+          content: '';
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          transition: all 0.2s ease;
+          background-color: red;
+
+
+        }
+      }
+    .lineLeft::after {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    .lineBottom::after {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .lineTop::after {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
     .lineLeft {
       position: absolute;
       top: 0;
@@ -54,5 +82,28 @@
         var(--offset) 100%
       );
     }
+    &:hover,
+    &.forceHover{
+      
+      transform: scale(1.1,1.1);
+      .lineLeft::after {
+        transform: scaleY(1);
+        
+      }
+    
+      .lineBottom::after {
+        transform: scaleX(1);
+        
+      }
+    
+      .lineTop::after {
+        transform: scaleX(1);
+        
+      }
+      
+
+      
+    }
   }
+
   
