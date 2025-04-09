@@ -33,6 +33,7 @@ export default function RootLayout({
           {children}
         </LayoutClient>
         <HeaderBottom />
+        <div id="modal-root"></div>
         <Footer/>
       </body>
     </html>
