@@ -9,6 +9,7 @@ import { CreditsCast, CreditsCrew } from "@/api/types";
 import CardCredit from "@/components/CardsSlider/CardCredit/CardCredit";
 
 import SliderCredits from "../sliders/sliderCredits/sliderCredits";
+import SliderVideoPeoples from "../sliders/sliderVideoPeoples/SliderVideoPeoples";
 
 interface MediaDetailProps {
   type: "movie" | "tv";
@@ -33,6 +34,7 @@ const MediaDetail = ({ type, id }: MediaDetailProps) => {
             <MainDescriptionTitle data={data}/>
             <div className={styles.slidersContainer}>
               <SliderCredits id={id} type={type}/>
+              <SliderVideoPeoples id={id} type={type}/>
             </div>
           </div>
           

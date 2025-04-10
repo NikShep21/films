@@ -57,11 +57,7 @@ const SliderPopular = () => {
       <div ref={containerRef} className={styles.sliderContainer}>
         <div className={styles.containerInfo}>
           <div className={styles.nameCategory}>Videos</div>
-          <Switcher
-            typeSwitcher={isScreenVsm ? "dropDown" : "default"}
-            funcChangeState={setType}
-            params={["Movie", "Tv"]}
-          />
+       
         </div>
         <Slider<VideoType[]>
           data={elems}
