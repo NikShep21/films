@@ -10,17 +10,23 @@ import React, { useEffect, useRef, useState } from "react";
 
 import styles from "./SliderVideos.module.scss";
 import CardVideo from "@/components/CardsSlider/cardVideo/CardVideo";
+import { resourceUsage } from "process";
 const SliderPopular = () => {
-  const [typeTitle, setTypeTitle] = useState<"Movie" | "Tv">("Movie");
-  const [elems, setElems] = useState<null|VideoType[][]>(null)
-  console.log(elems)
+
+  const [elems, setElems] = useState<(VideoType | null)[] | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { widthScreen,isScreenVsm } = useResize(containerRef);
+  console.log('screenVid: ' + widthScreen)
   const [isLoad, setIsLoad] = useState(false)
-  const media:{type:'movie'|'tv', id:number}[] = [
-    { type: 'movie', id: 872585 }, // Oppenheimer (2023)
-    { type: 'movie', id: 603692 }, // John Wick: Chapter 4 (2023)
-    { type: 'movie', id: 346698 }, // Barbie (2023)
-    { type: 'movie', id: 693134 }, // Dune: Part Two (2023)
-    { type: 'movie', id: 438148 }, // Indiana Jones and the Dial of Destiny (2023)
+  const media: { type: 'movie' | 'tv'; id: number; original_name: string }[] = [
+    { type: 'movie', id: 872585, original_name: 'Oppenheimer' }, 
+    { type: 'movie', id: 603692, original_name: 'John Wick: Chapter 4' }, 
+    { type: 'movie', id: 866398, original_name: 'The Beekeeper' }, 
+    { type: 'movie', id: 787699, original_name: 'Wonka' }, 
+    { type: 'movie', id: 1071215, original_name: 'ThanksGiving' }, 
+    { type: 'movie', id: 634492, original_name: 'Madame Web' }, 
+    { type: 'movie', id: 693134, original_name: 'Dune: Part Two' }, 
+    { type: 'movie', id: 438148, original_name: 'Indiana Jones and the Dial of Destiny' }, 
   ];
   
   useEffect(()=>{
@@ -28,10 +34,19 @@ const SliderPopular = () => {
       setIsLoad(true);
       try {
         const results = await Promise.all(
-          media.map((item) => getVideos(item.id, item.type))
+          media.map(async (item) => { 
+            
+            const response = await getVideos(item.id, item.type);
+            const res = response.find((elem)=> elem.name === 'Official Trailer')
+            if(!res){
+              return null
+            }
+            res.name = item.original_name
+            return res
+          })
           
         );
-        console.log('try')
+        
         setElems(results);
       } catch (error) {
         console.error(error);
@@ -43,28 +58,21 @@ const SliderPopular = () => {
     fetchVideos();
   },[])
  
-
- 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { isScreenVsm } = useResize(containerRef);
-  function setType(switchName: "Movie" | "Tv") {
-    setTypeTitle(switchName);
-  }
-
+  
   return (
     
-    <div className={styles.bg}>
-      <div ref={containerRef} className={styles.sliderContainer}>
+    <div  className={styles.bg}>
+      <div ref={containerRef}  className={styles.sliderContainer}>
         <div className={styles.containerInfo}>
-          <div className={styles.nameCategory}>Videos</div>
+          <div className={styles.nameCategory}>Trailers</div>
        
         </div>
-        <Slider<VideoType[]>
+        <Slider<VideoType | null>
           data={elems}
           isLoad={isLoad}
           maxWidthCard={400}
           renderItem={(item, index, widthCard) => (
-            <CardVideo key={index} data={item} widthCard={widthCard} type="Trailer"  />
+            <CardVideo key={index} data={item} widthCard={widthCard}  />
           )}
         />
       </div>

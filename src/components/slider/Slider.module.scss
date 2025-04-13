@@ -1,12 +1,35 @@
+
+.sliderContainer{
+    position: relative;
+    width: 100%;
+    
+   
+    
+    .arrowRight{
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translate(110%, -50%);
+    }
+    
+    .arrowLeft{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform:translate(-110%, -50%);
+    }
+}
 .slider{
     
     
-    position: relative;
+    
     overflow: clip;
-    overflow-clip-margin: 8px;
+    overflow-clip-margin:8px;
+    width: 100%;
+    
     .arrowRight{
         position: absolute;
-        right: 0;
+        right: 0px;
         top: 50%;
         transform: translateY(-50%);
     }

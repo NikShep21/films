@@ -14,15 +14,12 @@ import styles from "./ButtonSlider.module.scss";
      <button
      
        className={`${styles.btn} ${className}`}
-       style={{ height: size, width: size }}
+       style={{"--size": size} as React.CSSProperties}
        {...props}
        
      >
-       <div className={styles.arrowContainer}>
-         <div
-           className={type === "left" ? styles.arrowLeft : styles.arrowRight}
-         ></div>
-       </div>
+       <div className={styles.lineTop}></div>
+       <div className={styles.lineBottom}></div>
      </button>
    );
  };

@@ -7,12 +7,12 @@ import ButtonPlay from "@/components/ui/ButtonPlay/ButtonPlay";
 import CustomIframe from "@/components/screens/CustomIframe/CustomIframe";
 import Modal from "@/components/ui/modal/Modal";
 interface Props {
-  data: VideoType[] | null;
+  data: VideoType | null;
   widthCard: number;
-  type: string;
+  
 }
 
-const CardVideo = ({ data, widthCard, type }: Props) => {
+const CardVideo = ({ data, widthCard}: Props) => {
   if (!data) {
     return (
       <>
@@ -23,17 +23,12 @@ const CardVideo = ({ data, widthCard, type }: Props) => {
   const [isIframe, setIsIframe] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
  
-  const [elem, setElem] = useState<VideoType | null>(
-    data.find((item: VideoType) => item.type === type) || null
-  );
+  
   function handleIframe() {
     setIsIframe(!isIframe);
   }
   
-  if (!elem) {
-    console.error("No video found");
-    return null;
-  }
+
 
   return (
     <div
@@ -46,14 +41,15 @@ const CardVideo = ({ data, widthCard, type }: Props) => {
       <div className={styles.video}>
         <img
           className={styles.image}
-          src={`https://img.youtube.com/vi/${elem.key}/hqdefault.jpg`}
+          src={`https://img.youtube.com/vi/${data.key}/hqdefault.jpg`}
           alt=""
         />
         <ButtonPlay className={styles.buttonPlay} forceHover={isHovered} />
       </div>
+      <div className={styles.name}>{data.name}</div>
       {isIframe ? (
         <Modal className={styles.modal}>
-          <CustomIframe funcCloseModal={handleIframe} keyUrl={elem.key}  name={elem.name}/>
+          <CustomIframe funcCloseModal={handleIframe} keyUrl={data.key}  name={data.name}/>
         </Modal>
       ) : null}
     </div>

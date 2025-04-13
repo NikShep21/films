@@ -12,14 +12,14 @@ const SliderVideoPeoples = ({id,type}:Props) => {
       <div className={styles.containerInfo}>
         <div className={styles.nameCategory}>Now playing</div>
       </div>
-      <Slider<VideoType[]>
+      {/* <Slider<VideoType[]>
         data={data}
         isLoad={isLoad}
         maxWidthCard={400}
         renderItem={(item, index, widthCard) => (
             <Card key={index} data={item} widthCard={widthCard} />
           )}
-      />
+      /> */}
     </div>
     )
     

@@ -15,7 +15,8 @@ const SliderTopRated = () => {
     const [data, isLoad, errors] = useResponse(()=> getTrending(typeTitle === 'Day' ? 'day':'week'),[typeTitle])
 
     const containerRef = useRef<HTMLDivElement>(null);
-    const { isScreenVsm } = useResize(containerRef);
+    const { widthScreen,isScreenVsm } = useResize(containerRef);
+    console.log('screen: ' + widthScreen)
     function setType(switchName:'Day'|'Week'){
         setTypeTitle(switchName)
     }

@@ -19,15 +19,14 @@ const Slider = <T,>({
   maxWidthCard,
   renderItem,
 }: PropsType<T>) => {
-
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
   const [sliderElems, setSliderElems] = useState<(T | null)[]>(
     Array(10).fill(null)
   );
- 
-  const { widthScreen } = useResize(sliderContainerRef);
 
+  const { widthScreen } = useResize(sliderContainerRef);
+  
   const [activeElem, setActiveElem] = useState<number>(0);
   const isAnimation = useIsAnimation(sliderRef);
   const countElems = Math.ceil((widthScreen + 14) / (maxWidthCard + 15));
@@ -37,7 +36,6 @@ const Slider = <T,>({
   const offset = -(activeElem * (widthCard + 15));
   const [isSwiping, setIsSwiping] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
-
 
   useEffect(() => {
     setWidthCard(widthScreen / countElems - (15 - 15 / countElems));
@@ -76,7 +74,6 @@ const Slider = <T,>({
   function handleTouchStart(e: React.TouchEvent) {
     setStartX(e.touches[0].clientX);
     setIsSwiping(true);
-    
   }
   function handleTouchMove(e: React.TouchEvent) {
     if (!isSwiping) {
@@ -95,12 +92,7 @@ const Slider = <T,>({
   }
 
   return (
-    <div className={styles.slider} 
-    ref={sliderContainerRef}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-
-    >
+    <div className={styles.sliderContainer}>
       {activeElem === 0 ? null : (
         <ButtonSlider
           onClick={moveLeft}
@@ -112,18 +104,24 @@ const Slider = <T,>({
       {activeElem + countElems >= sliderElems.length ? null : (
         <ButtonSlider
           onClick={moveRight}
-          size={`${widthCard / 14 + 10}px`}
+          size={`${widthScreen/75+10 }px`}
           className={styles.arrowRight}
           type="right"
         />
       )}
-
       <div
-        style={{ left: offset }}
-        className={styles.sliderLine}
-        ref={sliderRef}
+        className={styles.slider}
+        ref={sliderContainerRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
       >
-        {sliderElems.map((elem, id) => renderItem(elem, id, widthCard))}
+        <div
+          style={{ left: offset }}
+          className={styles.sliderLine}
+          ref={sliderRef}
+        >
+          {sliderElems.map((elem, id) => renderItem(elem, id, widthCard))}
+        </div>
       </div>
     </div>
   );
