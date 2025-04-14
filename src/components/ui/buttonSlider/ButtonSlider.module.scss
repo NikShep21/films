@@ -5,20 +5,47 @@ $sin: calc(sin($angle-rad) + 0.1);
 .btn {
   width: var(--size);
   height: calc(var(--size) * 2);
-  opacity: 0.8;
+  opacity: 0.7;
   position: relative;
-   
+  z-index: 100;
+  
   .lineTop,
   .lineBottom {
     position: absolute;
     background-color: white;
     height: 66%;
     width: calc(var(--size) * 0.22); 
-    left: 0;
+    
   }
-
+  .lineTop::before,
+  .lineBottom::before {
+    content: "";
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: scaleY(0);
+    
+    transition: transform 0.25s ease;
+  }
+  .lineBottom::before{
+    transform-origin: left bottom;
+  }
+  .lineTop::before{
+    transform-origin: right top;
+  }
+  &:hover .lineTop::before,
+  &:hover .lineBottom::before {
+    transform: scaleY(1);
+  }
+  
+}
+.right{
   .lineTop {
     top: 0;
+    left: 0;
     transform-origin: top left;
     transform: rotate(-$angle-deg);
     
@@ -33,6 +60,7 @@ $sin: calc(sin($angle-rad) + 0.1);
 
   .lineBottom {
     bottom: 0;
+    left: 0;
     transform-origin: bottom left;
     transform: rotate($angle-deg);
     
@@ -42,6 +70,37 @@ $sin: calc(sin($angle-rad) + 0.1);
       100% 0,
       100% calc(100% - calc(var(--size) * 0.22 * #{$sin})),
       0 100%
+    );
+  }
+}
+.left{
+  .lineTop {
+    top: 0;
+    right: 0;
+    transform-origin: top right;
+    transform: rotate($angle-deg);
+    
+
+    clip-path: polygon(
+      0 calc(var(--size) * 0.22 * #{$sin}),
+      100% 0,
+      100% calc(100% - calc(var(--size) * 0.22 * #{$sin})),
+      0 100%
+    );
+  }
+
+  .lineBottom {
+    bottom: 0;
+    right: 0;
+    transform-origin: bottom right;
+    transform: rotate(-$angle-deg);
+    
+
+    clip-path: polygon(
+      0 0,
+      100% calc(var(--size) * 0.22 * #{$sin}),
+      100% 100%,
+      0 calc(100% - calc(var(--size) * 0.22 * #{$sin}))
     );
   }
 }

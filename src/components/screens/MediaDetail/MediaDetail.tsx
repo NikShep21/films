@@ -18,31 +18,36 @@ interface MediaDetailProps {
 
 const MediaDetail = ({ type, id }: MediaDetailProps) => {
   const [data, isLoad, errors] = useResponse(() => findMediaById(id, type));
-  if (data) {
-   
+  
+  return (
+    <>
+      <main className={styles.main}>
+        <div className={styles.backdropImage}>
+          {
+            data ? 
+            (
+              <img
+            src={getUrlImage(data.backdrop_path, "original")}
+            alt="backdrop"
+          />
+            )
+            :null
+          }
+          
+        </div>
+        <div className={styles.content}>
+          <MainDescriptionTitle data={data}/>
+          <div className={styles.slidersContainer}>
+            <SliderCredits id={id} type={type}/>
+            <SliderVideoPeoples id={id} type={type}/>
+          </div>
+        </div>
+        
+        
+      </main>
+    </>
+  );
+}
 
-    return (
-      <>
-        <main className={styles.main}>
-          <div className={styles.backdropImage}>
-            <img
-              src={getUrlImage(data.backdrop_path, "original")}
-              alt="backdrop"
-            />
-          </div>
-          <div className={styles.content}>
-            <MainDescriptionTitle data={data}/>
-            <div className={styles.slidersContainer}>
-              <SliderCredits id={id} type={type}/>
-              <SliderVideoPeoples id={id} type={type}/>
-            </div>
-          </div>
-          
-          
-        </main>
-      </>
-    );
-  }
-};
 
 export default MediaDetail;

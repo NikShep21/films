@@ -96,7 +96,7 @@ const Slider = <T,>({
       {activeElem === 0 ? null : (
         <ButtonSlider
           onClick={moveLeft}
-          size={`${widthCard / 14 + 10}px`}
+          size={`${widthScreen/75+10 }px`}
           className={styles.arrowLeft}
           type="left"
         />

@@ -2,6 +2,9 @@ import { getUrlImage, isMovie } from "@/utils/utils";
 import styles from "./MainDescriptionTitle.module.scss";
 import { Movie, Tv } from "@/api/types";
 import Genre from "@/components/ui/genre/Genre";
+import LoadCard from "@/components/ui/loadCard/LoadCard";
+import Image from "next/image"
+import MyImage from "@/components/ui/myImage/MyImage";
 interface MainDescriptionTitleProps {
   data: Movie | Tv | null;
 }
@@ -31,13 +34,21 @@ const MainDescriptionTitle = ({ data }: MainDescriptionTitleProps) => {
   return (
     <div className={styles.descriptionContainer}>
       <div className={styles.titleImageContainer}>
-        {data ? (
-          <img
-            className={styles.image}
-            src={getUrlImage(data.poster_path, "w342")}
-            alt="poster"
-          />
-        ) : null}
+    {
+      data?
+        <MyImage
+          width="342px"
+          aspect="487/731"
+          
+          src={getUrlImage(data.poster_path, "w342")}
+          className={styles.image}
+          
+        />
+      :<LoadCard width={'342px'} aspect="487/731" className={styles.image}/>
+    }
+     
+
+        
       </div>
       <div className={styles.titleInfoContainer}>
         <h1>

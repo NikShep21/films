@@ -13,12 +13,12 @@ import styles from "./ButtonSlider.module.scss";
    return (
      <button
      
-       className={`${styles.btn} ${className}`}
+       className={`${styles.btn} ${styles[type]} ${className}`}
        style={{"--size": size} as React.CSSProperties}
        {...props}
        
      >
-       <div className={styles.lineTop}></div>
+       <div className={`${styles.lineTop}`}></div>
        <div className={styles.lineBottom}></div>
      </button>
    );

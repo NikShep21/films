@@ -20,17 +20,17 @@
     .arrowLeft{
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        width: 2%;
-        height: 2%;
-        left: -5vw;
+        left: 0;
+        transform: translate(-115%,-50%);
+        
+        
     }
     .arrowRight{
         
         position: absolute;
         top: 50%;
-        right: -5vw;
-        transform: translateY(-50%);
+        right: 0;
+        transform: translate(115%,-50%);
         
     }
 

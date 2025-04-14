@@ -6,6 +6,7 @@ import LoadCard from "@/components/ui/loadCard/LoadCard";
 import ButtonPlay from "@/components/ui/ButtonPlay/ButtonPlay";
 import CustomIframe from "@/components/screens/CustomIframe/CustomIframe";
 import Modal from "@/components/ui/modal/Modal";
+import MyImage from "@/components/ui/myImage/MyImage";
 interface Props {
   data: VideoType | null;
   widthCard: number;
@@ -39,10 +40,12 @@ const CardVideo = ({ data, widthCard}: Props) => {
       className={styles.card}
     >
       <div className={styles.video}>
-        <img
+        <MyImage
+          
           className={styles.image}
           src={`https://img.youtube.com/vi/${data.key}/hqdefault.jpg`}
-          alt=""
+          width={`${widthCard}px`}
+          aspect="16/9"
         />
         <ButtonPlay className={styles.buttonPlay} forceHover={isHovered} />
       </div>

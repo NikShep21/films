@@ -99,6 +99,7 @@ const Slider = ({
   }
 
   return (
+    
     <div
       className={styles.slider}
       onTouchStart={handleTouchStart}
@@ -111,13 +112,13 @@ const Slider = ({
         <>
           <ButtonSlider
             onClick={moveLeft}
-            size={`${widthCard / 14 + 10}px`}
+            size={`${widthCard / 30 + 5}px`}
             className={styles.arrowLeft}
             type="left"
           />
           <ButtonSlider
             onClick={moveRight}
-            size={`${widthCard / 14 + 10}px`}
+            size={`${widthCard / 30 + 5}px`}
             className={styles.arrowRight}
             type="right"
           />

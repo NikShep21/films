@@ -5,6 +5,7 @@ import { getUrlImage, isMovie } from "@/utils/utils";
 import Link from "next/link";
 import Score from "../../ui/score/Score";
 import Genre from "../../ui/genre/Genre";
+import MyImage from "@/components/ui/myImage/MyImage";
 interface Props {
   data: MassiveMovie | MassiveTv | null;
   widthCard: number;
@@ -46,10 +47,12 @@ const Card = ({ data, widthCard }: Props) => {
               </div>
             </div>
           </div>
-          <img
+          <MyImage
             className={styles.img}
+            width={`${widthCard}px`}
+            aspect="487/731"
             src={getUrlImage(data.poster_path, "w500")}
-            alt="card"
+            
           />
         </div>
         <div style={{ width: `${widthCard}px` }} className={styles.nameTitle}>
