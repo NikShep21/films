@@ -18,6 +18,9 @@ const MyImage = ({ src, width, aspect = 'auto', height = 'none', className, ...p
 
   return (
     <div className={className}  style={{ width, aspectRatio: aspect, position: 'relative' }}>
+      {
+        !src  && <LoadCard width={width} height={height} aspect={aspect} />
+      }
       {isLoad && <LoadCard width={width} height={height} aspect={aspect} />}
       <img
       {...props}

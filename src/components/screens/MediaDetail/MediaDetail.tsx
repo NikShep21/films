@@ -36,7 +36,7 @@ const MediaDetail = ({ type, id }: MediaDetailProps) => {
           
         </div>
         <div className={styles.content}>
-          <MainDescriptionTitle data={data}/>
+          <MainDescriptionTitle data={data} type={type}/>
           <div className={styles.slidersContainer}>
             <SliderCredits id={id} type={type}/>
             <SliderVideoPeoples id={id} type={type}/>

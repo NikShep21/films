@@ -7,6 +7,7 @@ import Genre from "../../ui/genre/Genre";
 import Score from "../../ui/score/Score";
 import { getUrlImage } from "@/utils/utils";
 import LoadCard from "../../ui/loadCard/LoadCard";
+import MyImage from "@/components/ui/myImage/MyImage";
 interface Card {
   card: any;
   isVisibleLink?: boolean;
@@ -86,7 +87,9 @@ const bigCard = ({
           </CustomLink>
         </div>
       </div>
-      <img
+      <MyImage
+        width="1280px"
+        aspect={aspect}
         className={styles.img}
         src={getUrlImage(card[typeImage], "w1280")}
         alt=""
