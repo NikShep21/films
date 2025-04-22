@@ -7,6 +7,7 @@ import ButtonPlay from "@/components/ui/ButtonPlay/ButtonPlay";
 import CustomIframe from "@/components/screens/CustomIframe/CustomIframe";
 import Modal from "@/components/ui/modal/Modal";
 import MyImage from "@/components/ui/myImage/MyImage";
+import ImagePlaceholder from "@/components/ui/ImagePlaceholder/ImagePlaceholder";
 interface Props {
   data: VideoType | null;
   widthCard: number;
@@ -17,7 +18,7 @@ const CardVideo = ({ data, widthCard}: Props) => {
   if (!data) {
     return (
       <>
-        <LoadCard isText={true} aspect="16/9" width={`${widthCard}px`} />
+        <LoadCard borderRadius="8px" isText={true} aspect="16/9" width={`${widthCard}px`} />
       </>
     );
   }
@@ -40,13 +41,20 @@ const CardVideo = ({ data, widthCard}: Props) => {
       className={styles.card}
     >
       <div className={styles.video}>
-        <MyImage
-          
-          className={styles.image}
-          src={`https://img.youtube.com/vi/${data.key}/hqdefault.jpg`}
-          width={`${widthCard}px`}
-          aspect="16/9"
+        {
+          data.key ? 
+            <MyImage
+            borderRadius="8px"
+            className={styles.image}
+            src={`https://img.youtube.com/vi/${data.key}/hqdefault.jpg`}
+            width={`${widthCard}px`}
+            aspect="16/9"
         />
+          :
+          <ImagePlaceholder width={widthCard} aspectRatio="16/9">No video</ImagePlaceholder>
+
+        }
+        
         <ButtonPlay className={styles.buttonPlay} forceHover={isHovered} />
       </div>
       <div className={styles.name}>{data.name}</div>

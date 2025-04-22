@@ -1,6 +1,6 @@
 "use client";
 import { getMassiveTitles, getVideos } from "@/api/response";
-import { MassiveMovie, MassiveTv, VideoType } from "@/api/types";
+import {VideoType } from "@/api/types";
 import Card from "@/components/CardsSlider/card/Card";
 import Slider from "@/components/slider/Slider";
 import Switcher from "@/components/ui/Switcher/Switcher";

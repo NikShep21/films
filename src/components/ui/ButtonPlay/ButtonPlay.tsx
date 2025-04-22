@@ -5,7 +5,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
     forceHover?: boolean;
 }
 const ButtonPlay = ({className="",width=55, forceHover=false}:Props) => {
-  console.log(forceHover)
+
   return (
     <div className={className}>
         <div style={{"--size":`${width}px`} as React.CSSProperties} 

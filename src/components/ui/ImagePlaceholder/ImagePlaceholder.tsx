@@ -1,15 +1,15 @@
 import styles from './ImagePlaceholder.module.scss'
 import { GiFilmSpool } from "react-icons/gi";
-interface Props{
+interface Props extends React.HTMLAttributes<HTMLDivElement>{
     width: number;
     aspectRatio: string;
 }
-const ImagePlaceholder = ({width, aspectRatio}:Props) => {
+const ImagePlaceholder = ({width, aspectRatio, children}:Props) => {
   return (
     <div className={styles.imagePlaceholder} style={{ aspectRatio: aspectRatio, width: `${width}px`}}>
       <div className={styles.content}>
-        <GiFilmSpool size={50}/>
-        <p>No Image</p>
+        <GiFilmSpool size={width/3}/>
+        <p>{children}</p>
       </div>
     
     </div>

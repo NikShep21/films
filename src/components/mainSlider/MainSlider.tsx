@@ -3,19 +3,19 @@ import styles from "./MainSlider.module.scss";
 import BigCard from "../CardsSlider/bigCard/BigCard";
 import { useEffect, useRef, useState } from "react";
 import ButtonSlider from "../ui/buttonSlider/ButtonSlider";
-import { MassiveMovie } from "@/api/types";
+import { MassiveMovieType } from "@/api/types";
 import { useResize } from "@/hooks/useResize";
 import useIsAnimation from "@/hooks/useIsAnimation";
 
 interface SliderType {
-  data: MassiveMovie[] | null;
+  data: MassiveMovieType[] | null;
   speedAnimation?: number;
   isLoad: boolean;
   aspect: string;
   aspectMobile: string;
 }
 
-const Slider = ({
+const MainSlider = ({
   data,
   isLoad,
   speedAnimation = 400,
@@ -23,7 +23,7 @@ const Slider = ({
   aspectMobile,
 }: SliderType) => {
   const [activeElem, setActiveElem] = useState<number>(2);
-  const [sliderElem, setSliderElem] = useState<(MassiveMovie | undefined)[]>(
+  const [sliderElem, setSliderElem] = useState<(MassiveMovieType | undefined)[]>(
     Array(10).fill(undefined)
   );
 
@@ -152,4 +152,4 @@ const Slider = ({
   );
 };
 
-export default Slider;
+export default MainSlider;

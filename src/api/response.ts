@@ -1,14 +1,13 @@
 import axios from "axios";
-import { MassiveMovie,Genres, MassiveTv, Movie, Tv, Credits, CreditsCrew, CreditsCast, CreditsGeneral, VideoType } from "./types";
+import { MassiveMovieType,GenresType, MassiveTvType, MovieType, TvType, CreditsType, CreditsCrewType, CreditsCastType, CreditsGeneralType, VideoType, ReviewType } from "./types";
 const defaultPath = 'https://api.themoviedb.org/3'
-const imagePath = 'https://image.tmdb.org/t/p'
 const api_key = process.env.NEXT_PUBLIC_API_KEY
 
 
 export async function getMassiveTitles<T extends 'tv' | 'movie'>(
     typeRequest: string,
     typeTitle: T
-): Promise<T extends 'tv' ? MassiveTv[] : MassiveMovie[]> {
+): Promise<T extends 'tv' ? MassiveTvType[] : MassiveMovieType[]> {
     
     try {
         const response = await axios.get(
@@ -20,10 +19,10 @@ export async function getMassiveTitles<T extends 'tv' | 'movie'>(
         throw error;
     }
 }
-export async function getTrending(time:'day'|'week'): Promise<(MassiveMovie | MassiveTv)[]>{
+export async function getTrending(time:'day'|'week'): Promise<(MassiveMovieType | MassiveTvType)[]>{
     try{
         const response = await axios.get(`${defaultPath}/trending/all/${time}?api_key=${api_key}`)
-        const data = response.data.results.filter((item:MassiveMovie | MassiveTv | CreditsGeneral)=> 'vote_average' in item )// проверяем, чтобы это был не фильм или сериал)
+        const data = response.data.results.filter((item:MassiveMovieType | MassiveTvType | CreditsGeneralType)=> 'vote_average' in item )// проверяем, чтобы это был не фильм или сериал)
         return data
     }
     catch(error){
@@ -48,7 +47,7 @@ export async function getGenres(typeGenre:'movie'|'tv'){
     
 }
 
-export async function findMediaById<T extends 'movie' | 'tv'>(id:number,type:T): Promise<T extends 'movie' ? Movie : Tv>{
+export async function findMediaById<T extends 'movie' | 'tv'>(id:number,type:T): Promise<T extends 'movie' ? MovieType : TvType>{
     try{
         const response = await axios.get(`${defaultPath}/${type}/${id}?api_key=${api_key}`)
         return response.data
@@ -58,10 +57,10 @@ export async function findMediaById<T extends 'movie' | 'tv'>(id:number,type:T):
         throw error;
     }
 }   
-export async function getCredits<T extends 'crew'|'cast'>(id:number, type:'movie' | 'tv',typeCredits:T):Promise<T extends 'crew' ? CreditsCrew[] : CreditsCast[]>{
+export async function getCredits<T extends 'crew'|'cast'>(id:number, type:'movie' | 'tv',typeCredits:T):Promise<T extends 'crew' ? CreditsCrewType[] : CreditsCastType[]>{
     try{
         const response = await axios.get(`${defaultPath}/${type}/${id}/credits?api_key=${api_key}`)
-        return response.data[typeCredits] as T extends 'crew' ? CreditsCrew[] : CreditsCast[];
+        return response.data[typeCredits] as T extends 'crew' ? CreditsCrewType[] : CreditsCastType[];
     }
     catch(error){
         console.error('Error fetching data:', error);
@@ -71,10 +70,31 @@ export async function getCredits<T extends 'crew'|'cast'>(id:number, type:'movie
 export async function getVideos(id:number,type:'movie'|'tv'):Promise<VideoType[]>{
     try{
         const response = await axios.get(`${defaultPath}/${type}/${id}/videos?api_key=${api_key}`)
-        console.log(response.data)
         return response.data.results
     }
     catch(error){
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+export async function getSimilar<T extends 'movie' | 'tv'>(id:number, type:T):Promise<T extends 'movie' ? MassiveMovieType[] : MassiveTvType[]>{
+    try {
+        const response = await axios.get(
+            `${defaultPath}/${type}/${id}/similar?api_key=${api_key}`
+        );
+        return response.data.results;
+    } catch(error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+export async function getReviews(id:number, type:'movie'|'tv'):Promise<ReviewType[]> {
+    try {
+        const response = await axios.get(
+            `${defaultPath}/${type}/${id}/reviews?api_key=${api_key}`
+        );
+        return response.data.results;
+    } catch(error) {
         console.error('Error fetching data:', error);
         throw error;
     }

@@ -4,7 +4,7 @@ import styles from "./MainPoster.module.scss";
 import { getMassiveTitles } from "@/api/response";
 import useResponse from "@/hooks/useResponse";
 import MainSlider from "@/components/mainSlider/MainSlider";
-import { MassiveMovie, MassiveTv } from "@/api/types";
+
 
 const aspect = "9/5";
 const aspectMobile = "487/731";

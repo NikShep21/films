@@ -8,6 +8,8 @@ import Score from "../../ui/score/Score";
 import { getUrlImage } from "@/utils/utils";
 import LoadCard from "../../ui/loadCard/LoadCard";
 import MyImage from "@/components/ui/myImage/MyImage";
+import ImagePlaceholder from "@/components/ui/ImagePlaceholder/ImagePlaceholder";
+import { DiIe } from "react-icons/di";
 interface Card {
   card: any;
   isVisibleLink?: boolean;
@@ -16,7 +18,7 @@ interface Card {
   aspect: string;
   aspectMobile: string;
 }
-const imagePath = "https://image.tmdb.org/t/p";
+
 
 const bigCard = ({
   swipeCard,
@@ -41,11 +43,15 @@ const bigCard = ({
   }, []);
   if (card === undefined) {
     return (
-      <LoadCard
-        ref={cardRef}
-        aspect={typeImage === "backdrop_path" ? aspect : aspectMobile}
-        width="auto"
-      />
+      <div className={styles.card}>
+
+        <LoadCard
+          borderRadius="8px"
+          ref={cardRef}
+          aspect={typeImage === "backdrop_path" ? aspect : aspectMobile}
+          width="100%"
+        />
+      </div>
     );
   }
   return (
@@ -87,13 +93,20 @@ const bigCard = ({
           </CustomLink>
         </div>
       </div>
-      <MyImage
+      {
+        card[typeImage] ? 
+        <MyImage
         width="1280px"
         aspect={aspect}
+        borderRadius="8px"
         className={styles.img}
         src={getUrlImage(card[typeImage], "w1280")}
         alt=""
       />
+      :
+      <ImagePlaceholder width={1280} aspectRatio={aspect}>No Image </ImagePlaceholder>
+      }
+      
     </div>
   );
 };

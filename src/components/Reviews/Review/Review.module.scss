@@ -1,0 +1,13 @@
+.reviewContainer{
+    display: grid;
+    grid-template-columns: 1fr 15fr 2fr;
+    .imageContainer{
+        
+    }
+    .content{
+        padding: 0px 4% 0px 2%;
+    }
+    .score{
+        background-color: red;
+    }
+}

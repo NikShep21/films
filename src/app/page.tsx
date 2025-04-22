@@ -1,6 +1,5 @@
 import MainPoster from '@/components/screens/mainPoster/MainPoster'
 import styles from './page.module.scss'
-import Poster from '@/components/screens/poster/Poster'
 import SliderNowPlaying from '@/components/screens/sliders/sliderNowPlaying/SliderNowPlaying'
 import SliderPopular from '@/components/screens/sliders/sliderPopular/SliderPopular'
 import SliderTopRated from '@/components/screens/sliders/sliderTopRated/sliderTopRated'

@@ -25,14 +25,14 @@ export interface VideoType{
     size: number;
     type: string;
 }
-export interface MassiveMovie extends BaseMedia {
+export interface MassiveMovieType extends BaseMedia {
     original_title: string;
     title: string;
     release_date: string;
     video: boolean;
 }
 
-export interface MassiveTv extends BaseMedia {
+export interface MassiveTvType extends BaseMedia {
     first_air_date: string;
     name: string;
     origin_country: string[];
@@ -47,13 +47,13 @@ interface Creators {
     original_name: string;
 }
 
-export interface Genres {
+export interface GenresType {
     id: number;
     name: string;
 }
 
-interface DetailedMedia extends BaseMedia {
-    genres: Genres[];
+interface DetailedMediaType extends BaseMedia {
+    genres: GenresType[];
     homepage: string;
     production_companies: any[];
     production_countries: any[];
@@ -63,7 +63,7 @@ interface DetailedMedia extends BaseMedia {
     tagline: string;
 }
 
-export interface Movie extends DetailedMedia {
+export interface MovieType extends DetailedMediaType {
     belongs_to_collection: any;
     budget: number;
     imdb_id: string;
@@ -74,18 +74,18 @@ export interface Movie extends DetailedMedia {
     title: string;
     video: boolean;
 }
-export interface CreditsCast extends CreditsGeneral{
+export interface CreditsCastType extends CreditsGeneralType{
     cast_id:number,
     character:string,
     order: number
     credit_id: string,
 }
-export interface CreditsCrew extends CreditsGeneral{
+export interface CreditsCrewType extends CreditsGeneralType{
     department:string,
     job:string
     credit_id: string,
 }
-export interface CreditsGeneral {
+export interface CreditsGeneralType {
     adult: boolean,
     gender: number,
     id:number,
@@ -96,12 +96,12 @@ export interface CreditsGeneral {
     profile_path:string,
     
 }
-export interface Credits{
-    cast:CreditsCast[],
-    crew:CreditsCrew[],
+export interface CreditsType{
+    cast:CreditsCastType[],
+    crew:CreditsCrewType[],
 
 }
-export interface Tv extends DetailedMedia {
+export interface TvType extends DetailedMediaType {
     created_by: Creators[];
     episode_run_time: number[];
     first_air_date: string;
@@ -118,4 +118,19 @@ export interface Tv extends DetailedMedia {
     original_name: string;
     seasons: any[];
     type: string;
+}
+interface AuthorDitails{
+    name:string
+    username:string
+    avatar_path:string
+    rating:number|null
+}
+export interface ReviewType{
+    author:string
+    author_details:AuthorDitails
+    content:string
+    created_at: string
+    id:string
+    updated_at:string
+    url:string
 }

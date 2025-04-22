@@ -6,7 +6,7 @@ import { useResize } from '@/hooks/useResize'
 import useResponse from '@/hooks/useResponse'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from '../baseStyles.module.scss'
-import { CreditsCast, CreditsCrew } from '@/api/types'
+import { CreditsCastType, CreditsCrewType } from '@/api/types'
 import CardCredit from '@/components/CardsSlider/CardCredit/CardCredit'
 
 interface Props {
@@ -19,7 +19,7 @@ const SliderCredits = ({id, type}:Props) => {
     
     const [data, isLoad, errors] = useResponse(()=> getCredits(id,type,typeCredits === 'Crew' ? 'crew' : 'cast'),[typeCredits])
    
-    const [parsedData, setParsedData] = useState<CreditsCast[]|CreditsCrew[]|null>(null)
+    const [parsedData, setParsedData] = useState<CreditsCastType[]|CreditsCrewType[]|null>(null)
     const containerRef = useRef<HTMLDivElement>(null);
     const { isScreenVsm } = useResize(containerRef);
     useEffect(() => {
@@ -42,7 +42,7 @@ const SliderCredits = ({id, type}:Props) => {
           params={['Crew','Cast']}
         />
       </div>
-      <Slider<CreditsCast|CreditsCrew>
+      <Slider<CreditsCastType|CreditsCrewType>
         
         data={parsedData}
         isLoad={isLoad}

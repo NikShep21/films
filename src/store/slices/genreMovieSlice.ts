@@ -1,4 +1,4 @@
-import { Genres } from "@/api/types";
+import { GenresType } from "@/api/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState:GenreState = {
@@ -7,7 +7,7 @@ const initialState:GenreState = {
     errors:null
 }
 interface GenreState {
-    data: Genres[]| null;
+    data: GenresType[]| null;
     isLoad: boolean;
     errors: Error | null;
 }

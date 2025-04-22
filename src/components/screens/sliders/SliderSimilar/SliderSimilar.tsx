@@ -1,24 +1,22 @@
 'use client'
-import { getMassiveTitles } from '@/api/response'
+import { getMassiveTitles, getSimilar } from '@/api/response'
 import { MassiveMovieType, MassiveTvType } from '@/api/types'
 import Card from '@/components/CardsSlider/card/Card'
 import Slider from '@/components/slider/Slider'
-import Switcher from '@/components/ui/Switcher/Switcher'
-import { useResize } from '@/hooks/useResize'
 import useResponse from '@/hooks/useResponse'
-import { defaultOverrides } from 'next/dist/server/require-hook'
-import React, { useRef, useState } from 'react'
 import styles from '../baseStyles.module.scss'
-const SliderNowPlaying = () => {
+interface Props {
+    id: number;
+    type: "movie" | "tv";
+  }
+const SliderNowPlaying = ({id,type}:Props) => {
     
-    
-    const [data, isLoad, errors] = useResponse(()=> getMassiveTitles('now_playing','movie'))
-    
+    const [data, isLoad, errors] = useResponse(()=> getSimilar(id,type))
     
   return (
     <div className={styles.sliderContainer}>
       <div className={styles.containerInfo}>
-        <div className={styles.nameCategory}>Now playing</div>
+        <div className={styles.nameCategory}>Similar</div>
       </div>
       <Slider<MassiveMovieType|MassiveTvType>
         data={data}

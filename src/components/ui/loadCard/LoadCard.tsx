@@ -5,17 +5,19 @@ interface PropsType extends React.HTMLAttributes<HTMLDivElement> {
   height?: string;
   width: string;
   aspect?: string;
+  borderRadius?:string
   isText?:boolean
 }
 
 const LoadCard = forwardRef<HTMLDivElement, PropsType>(
-  ({ height = "auto", width, aspect = "auto", className = "",isText=false,...rest }, ref) => {
+  ({ height = "auto", width, aspect = "auto",borderRadius='null', className = "",isText=false,...rest }, ref) => {
+    
     return (
-      <div className={styles.loadContainer}>
+      <div>
 
         <div
           ref={ref} 
-          style={{ aspectRatio: aspect, width: width, height: height }}
+          style={{width:width, aspectRatio: aspect, height: height, borderRadius:borderRadius }}
           className={`${styles.loadCard} ${className}`}
           {...rest}
         ></div>

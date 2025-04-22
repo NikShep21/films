@@ -1,6 +1,6 @@
 'use client'
 import { getMassiveTitles, getTrending } from '@/api/response'
-import { MassiveMovie, MassiveTv } from '@/api/types'
+import { MassiveMovieType, MassiveTvType } from '@/api/types'
 import Card from '@/components/CardsSlider/card/Card'
 import Slider from '@/components/slider/Slider'
 import Switcher from '@/components/ui/Switcher/Switcher'
@@ -31,7 +31,7 @@ const SliderTopRated = () => {
           params={['Day','Week']}
         />
       </div>
-      <Slider<MassiveMovie|MassiveTv>
+      <Slider<MassiveMovieType|MassiveTvType>
         
         data={data}
         isLoad={isLoad}

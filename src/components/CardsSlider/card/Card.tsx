@@ -1,4 +1,4 @@
-import { MassiveMovie, MassiveTv } from "@/api/types";
+import { MassiveMovieType, MassiveTvType } from "@/api/types";
 import styles from "./Card.module.scss";
 import LoadCard from "../../ui/loadCard/LoadCard";
 import { getUrlImage, isMovie } from "@/utils/utils";
@@ -6,15 +6,16 @@ import Link from "next/link";
 import Score from "../../ui/score/Score";
 import Genre from "../../ui/genre/Genre";
 import MyImage from "@/components/ui/myImage/MyImage";
+import ImagePlaceholder from "@/components/ui/ImagePlaceholder/ImagePlaceholder";
 interface Props {
-  data: MassiveMovie | MassiveTv | null;
+  data: MassiveMovieType | MassiveTvType | null;
   widthCard: number;
 }
 const Card = ({ data, widthCard }: Props) => {
   if (!data) {
     return (
       <>
-        <LoadCard isText={true} aspect="487/731" width={`${widthCard}px`} />
+        <LoadCard borderRadius="8px" isText={true} aspect="487/731" width={`${widthCard}px`} />
       </>
     );
   } else {
@@ -47,13 +48,21 @@ const Card = ({ data, widthCard }: Props) => {
               </div>
             </div>
           </div>
-          <MyImage
+          {
+            data.poster_path ? 
+            <MyImage
             className={styles.img}
             width={`${widthCard}px`}
             aspect="487/731"
+            borderRadius="8px"
             src={getUrlImage(data.poster_path, "w500")}
+            />
+            :
+            <ImagePlaceholder width={widthCard} aspectRatio="487/731" >No</ImagePlaceholder>
+          }
+          
             
-          />
+         
         </div>
         <div style={{ width: `${widthCard}px` }} className={styles.nameTitle}>
           {isMovie(data) ? data.title : data.name}

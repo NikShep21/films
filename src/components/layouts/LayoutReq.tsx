@@ -1,7 +1,7 @@
 "use client";
 
 import { getGenres } from "@/api/response";
-import { Genres } from "@/api/types";
+
 import useResponse from "@/hooks/useResponse";
 import { setStateMovie } from "@/store/slices/genreMovieSlice";
 import { setStateTv } from "@/store/slices/genreTvSlice";

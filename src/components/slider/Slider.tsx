@@ -26,7 +26,7 @@ const Slider = <T,>({
   );
 
   const { widthScreen } = useResize(sliderContainerRef);
-  
+
   const [activeElem, setActiveElem] = useState<number>(0);
   const isAnimation = useIsAnimation(sliderRef);
   const countElems = Math.ceil((widthScreen + 14) / (maxWidthCard + 15));
@@ -96,7 +96,7 @@ const Slider = <T,>({
       {activeElem === 0 ? null : (
         <ButtonSlider
           onClick={moveLeft}
-          size={`${widthScreen/75+10 }px`}
+          size={`${widthScreen / 75 + 10}px`}
           className={styles.arrowLeft}
           type="left"
         />
@@ -104,7 +104,7 @@ const Slider = <T,>({
       {activeElem + countElems >= sliderElems.length ? null : (
         <ButtonSlider
           onClick={moveRight}
-          size={`${widthScreen/75+10 }px`}
+          size={`${widthScreen / 75 + 10}px`}
           className={styles.arrowRight}
           type="right"
         />

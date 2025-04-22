@@ -2,8 +2,9 @@
 .slider{
     position: relative;
     max-width: 1000px;
+    width: 100%;
     margin: 0 auto;
-    
+  
     touch-action: none;
       
     
@@ -14,7 +15,11 @@
         display: flex;
         gap: 40px;
         height: 100%;
+        
+     
         width: max-content;
+       
+        
     }
     
     .arrowLeft{
